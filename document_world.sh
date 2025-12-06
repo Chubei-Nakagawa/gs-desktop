@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ./env.sh
 export PATH=/Library/bin:/System/bin:$PATH
 
 . /Developer/Makefiles/GNUstep.sh

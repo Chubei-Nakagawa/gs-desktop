@@ -1,7 +1,8 @@
 #!/bin/sh
 
 . ../BUILD_SETTINGS.conf
-. /Developer/Makefiles/GNUstep.sh
+#. /Developer/Makefiles/GNUstep.sh
+. /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 cd ../../gs-workspace || exit 1
 

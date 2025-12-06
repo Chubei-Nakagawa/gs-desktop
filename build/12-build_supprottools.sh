@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+source ../env.sh
 
-cp -Ra ../Helpers/*.app /System/Applications
+mkdir -p ${GSLIGHT_SYSTEM}/Applications 2>/dev/null
+cp -Ra ../Helpers/*.app ${GSLIGHT_SYSTEM}/Applications
 
-mkdir -p /Library/Scripts 2>/dev/null
-cp -a ../Scripts/* /Library/Scripts/
-chmod 0755 /Library/Scripts/*
+mkdir -p ${GSLIGHT_LIBRARY}/Scripts 2>/dev/null
+cp -a ../Scripts/* ${GSLIGHT_LIBRARY}/Scripts/
+chmod 0755 ${GSLIGHT_LIBRARY}/Scripts/*

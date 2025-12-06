@@ -114,7 +114,8 @@ unset XTERM_VERSION
 unset XTERM_SHELL
 unset XTERM_LOCAL
 
-source /Developer/Makefiles/GNUstep.sh
+#source /Developer/Makefiles/GNUstep.sh
+source /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 WM_ARGS=""
 trap cleanup SIGINT

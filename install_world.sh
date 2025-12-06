@@ -3,6 +3,14 @@ set -e
 
 source ./env.sh
 
+if [ `id -u` -ne 0 ];then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  echo " please run this script as root"
+  echo " sudo -E $0"
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit 1
+fi
+
 if ! [ -d "../gs-workspace" ];then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo " system sources not found"
@@ -11,15 +19,15 @@ if ! [ -d "../gs-workspace" ];then
   exit 1
 fi
 
-export PATH=${GSLIGHT_FOLDER}/System/bin:${GSLIGHT_FOLDER}/Library/bin:$PATH
+export PATH=/opt/gs-light/System/bin:/opt/gs-light/Library/bin:$PATH
 
 D=`pwd`
 cd ./build
-./build_all.sh 2>&1 | tee $D/build_world-system.log
+./install_all.sh 2>&1 | tee $D/install_world-system.log
 
 cd "$D"
 cd ./Applications
-./build_all.sh 2>&1 | tee $D/build_world-apps.log
+./install_all.sh 2>&1 | tee $D/install_world-apps.log
 
 
 cd "$D"
