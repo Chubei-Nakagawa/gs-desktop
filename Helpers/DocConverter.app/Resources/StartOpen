@@ -1,1 +1,1 @@
-/Library/bin/gopen -a DocViewer "$1"
+/usr/bin/gopen -a DocViewer "$1"

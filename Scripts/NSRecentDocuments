@@ -1,6 +1,6 @@
 #!/bin/perl
 
-open(IN, "/Library/bin/defaults read |");
+open(IN, "/opt/gs-light/Library/bin/defaults read |");
 while(<IN>) {
   chomp();
   if ($_ =~ / NSRecentDocuments /) {

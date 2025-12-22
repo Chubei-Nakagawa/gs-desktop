@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function start_windowmanager {
-  (/System/bin/wmaker $WM_ARGS) &
+  (/opt/gs-light/System/bin/wmaker $WM_ARGS) &
   WM_PID="$!"
 
   echo "WM is running on $WM_PID"
@@ -40,11 +40,11 @@ function init_config {
 
   if [ ! -f "$HOME/Library/WindowMaker/Defaults/WindowMaker" ];then
     echo "init WindowMaker defaults"
-    /System/bin/wmaker.inst --batch
-    cp /System/etc/WindowMaker/WMRootMenu "$HOME/Library/WindowMaker/Defaults"
+    /opt/gs-light/System/bin/wmaker.inst --batch
+    cp /opt/gs-light/System/etc/WindowMaker/WMRootMenu "$HOME/Library/WindowMaker/Defaults"
   fi
 
-  /System/bin/mkfontconfig
+  /opt/gs-light/System/bin/mkfontconfig
   if [ -f "$HOME/Library/etc/fonts.conf" ];then
     export FONTCONFIG_FILE=$HOME/Library/etc/fonts.conf
   fi
@@ -94,7 +94,7 @@ if ! xset b 0 ;then
     exit 1
   else
     echo "executing startx"
-    exec startx /System/bin/startgsde $*
+    exec startx /opt/gs-light/System/bin/startgsde $*
   fi
 fi
 
@@ -107,7 +107,7 @@ export PATH="/System/bin:/Library/bin:$HOME/Library/Scripts:/Library/Scripts:$PA
 export MANPATH=":/System/share/man:/Library/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"
 export GS_DESKTOP_ID="$$"
-export BROWSER="/Library/bin/nxbrowser"
+export BROWSER="/opt/gs-light/Library/bin/nxbrowser"
 
 ## unset envs in case we are running from a terminal window
 unset XTERM_VERSION

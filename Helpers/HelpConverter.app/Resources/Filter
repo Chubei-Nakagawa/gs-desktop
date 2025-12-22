@@ -1,4 +1,4 @@
-/Library/bin/nxnotify show-panel --title "Help Filter" --info "converting to help"
+nxnotify show-panel --title "Help Filter" --info "converting to help"
 
 case "$1" in
   *.gsdoc)
@@ -12,4 +12,4 @@ case "$1" in
    ;;
 esac
 
-/Library/bin/nxnotify hide-panel
+/usr/local/bin/nxnotify hide-panel

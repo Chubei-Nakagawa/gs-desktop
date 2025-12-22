@@ -43,4 +43,4 @@ elsif ($SCHEME eq "uart") {
 $CMD = uri_escape($CMD);
 $TITLE = uri_escape($TITLE);
 
-system("/Library/bin/gopen", "term://$TERMFILE?cmd=$CMD&title=$TITLE");
+system("/usr/bin/gopen", "term://$TERMFILE?cmd=$CMD&title=$TITLE");

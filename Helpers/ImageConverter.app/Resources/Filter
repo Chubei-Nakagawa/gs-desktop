@@ -1,4 +1,4 @@
-/Library/bin/nxnotify show-panel --title "Filter Service" --info "converting image to tiff"
+/usr/local/bin/nxnotify show-panel --title "Filter Service" --info "converting image to tiff"
 
 case "$1" in
   *.xpm|*.xcf|*.pnm|*.bpm|*.ico|*.webp)
@@ -6,4 +6,4 @@ case "$1" in
   ;;
 esac
 
-/Library/bin/nxnotify hide-panel
+/usr/local/bin/nxnotify hide-panel

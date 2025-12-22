@@ -128,7 +128,7 @@
 
 - (void) execTask {
   NSArray* args = [NSArray array];
-  NSString* exec = @"/System/Frameworks/SystemKit.framework/Resources/gesture_helper";
+  NSString* exec = @"/lib/x86_64-linux-gnu/GNUstep/Frameworks/SystemKit.framework/Resources/gesture_helper";
   
   //NSDate* limit = [NSDate dateWithTimeIntervalSinceNow:0.3];
   //[[NSRunLoop currentRunLoop] runUntilDate: limit];

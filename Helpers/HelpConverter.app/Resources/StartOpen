@@ -1,1 +1,1 @@
-/Library/bin/gopen -a HelpViewer "$1"
+/usr/bin/gopen -a HelpViewer "$1"

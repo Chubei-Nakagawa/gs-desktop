@@ -1,1 +1,1 @@
-defaults write NSGlobalDomain GSAppKitUserBundles '("/Library/Bundles/Introspector.bundle")'
+defaults write NSGlobalDomain GSAppKitUserBundles '("/opt/gs-light/Library/Bundles/Introspector.bundle")'

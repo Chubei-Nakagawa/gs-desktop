@@ -110,7 +110,7 @@
 	". `pkg-config --cflags udisks2` `pkg-config --cflags dbus-1`"
     );
     "SEARCH_LIB_DIRS" = (
-	"/Library/Frameworks"
+	"/opt/gs-light/Library/Frameworks"
     );
     SUBPROJECTS = (
     );

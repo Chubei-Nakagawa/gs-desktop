@@ -5,4 +5,4 @@ if [ -n "$GS_DESKTOP_SAFEMODE" ];then
   exit
 fi
 
-exec /System/bin/startgsde --safe-mode
+exec /opt/gs-light/System/bin/startgsde --safe-mode

@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
+GSBASE_DIR="/usr/bin"
+GSDESKTOP_BINDIR="/usr/local/bin"
+GSLIGHT_SYSDIR="/opt/gs-light/System"
+GSLIGHT_LIBDIR="/opt/gs-light/Library"
+HOME_LIBDIR="${HOME}/Library"
+
 function show_status {
   if [ -n "$1" ];then
     echo "status: $1"
-    /System/bin/wmshowstatus "$1" $2 || exit 1
+    ${GSLIGHT_SYSDIR}/bin/wmshowstatus "$1" $2 || exit 1
   else
-    /System/bin/wmshowstatus
+    ${GSLIGHT_SYSDIR}/bin/wmshowstatus
   fi
 }
 
 function start_windowmanager {
+  rm $FONTCONFIG_FILE
   show_status "starting windowmanager" "gray45"
-  /System/bin/wmaker $WM_ARGS
+  ${GSLIGHT_SYSDIR}/bin/wmaker $WM_ARGS
   show_status "stopping windowmanager" "gray45"
 }
 
@@ -20,55 +27,57 @@ function continue_in_wm  {
   echo "$WMAKER_BIN_PID" > /tmp/$UID-wm.pid
 
   show_status "about to autostart apps"
-  /Library/Scripts/AutoLaunchApps
+  ${GSLIGHT_LIBDIR}/Scripts/AutoLaunchApps
 
   show_status "about to start Notification Monitor"
-  /System/Applications/NotMon.app/NotMon -GSSuppressAppIcon YES -autolaunch YES &
+  #${GSLIGHT_SYSDIR}/Applications/NotMon.app/NotMon -GSSuppressAppIcon YES -autolaunch YES &
+  /usr/local/bin/NotMon -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-notmon.pid
 
   show_status "about to start Gesture Helper"
-  /System/Applications/GestureHelper.app/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
+  #${GSLIGHT_SYSDIR}/Applications/GestureHelper.app/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
+  /usr/local/bin/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-ghelper.pid
   xrefresh
 }
 
 function start_services {
   show_status "about to start gdomap" "gray15"
-  /Library/bin/defaults write NSGlobalDomain NSPortIsMessagePort NO
-  /Library/bin/defaults write NSGlobalDomain NSHostNameIsLocalhost YES
+  ${GSBASE_DIR}/defaults write NSGlobalDomain NSPortIsMessagePort NO
+  ${GSBASE_DIR}/defaults write NSGlobalDomain NSHostNameIsLocalhost YES
 
-  /Library/bin/gdomap -f &
+  ${GSBASE_DIR}/gdomap -f &
   echo "$!" > /tmp/$UID-gdomap.pid
   sleep 0.5
 
   show_status "about to start Notification Center" "gray20"
-  /Library/bin/gdnc --daemon &
+  ${GSBASE_DIR}/gdnc --daemon &
   echo "$!" > /tmp/$UID-gdnc.pid
   sleep 0.5
 
   show_status "about to start Pasteboard Service" "gray25"
-  /Library/bin/gpbs --daemon &
+  ${GSBASE_DIR}/gpbs --daemon &
   echo "$!" > /tmp/$UID-gpbs.pid
   sleep 0.3
 
   # needed to start synchronizing the X11 CLIPBOARD
-  echo " " | /Library/bin/nxpasteboard --copy
+  echo " " | ${GSDESKTOP_BINDIR}/nxpasteboard --copy
 
   # needed to start PA audio sever
-  /Library/bin/nxaudio --status
+  ${GSDESKTOP_BINDIR}/nxaudio --status
 
   show_status "about to start fswatcher Service" "gray30"
-  /Library/bin/fswatcher --daemon &
+  ${GSDESKTOP_BINDIR}/fswatcher --daemon &
   echo "$!" > /tmp/$UID-fswatcher.pid
   sleep 0.3
 
   show_status "about to start ddbd Service" "gray35"
-  /Library/bin/ddbd --daemon &
+  ${GSDESKTOP_BINDIR}/ddbd --daemon &
   echo "$!" > /tmp/$UID-ddbd.pid
   sleep 0.3
 
   show_status "making services" "gray40"
-  /Library/bin/make_services
+  ${GSBASE_DIR}/make_services
 }
 
 function _kill_proc {
@@ -106,25 +115,25 @@ function stop_services {
 function init_config {
   show_status "init config" "gray10"
 
-  if [ ! -f "$HOME/Library/etc/GSDE.conf" ];then
+  if [ ! -f "${HOME_LIBDIR}/etc/GSDE.conf" ];then
     echo "init user defaults"
-    mkdir "$HOME/Library" 2>/dev/null
-    cp -fR /etc/skel/Library/* "$HOME/Library"
+    mkdir "${HOME_LIBDIR}" 2>/dev/null
+    cp -fR /etc/skel/Library/* "${HOME_LIBDIR}"
   fi
  
-  if [ ! -f "$HOME/Library/WindowMaker/Defaults/WindowMaker" ];then
+  if [ ! -f "${HOME_LIBDIR}/WindowMaker/Defaults/WindowMaker" ];then
     echo "init WindowMaker defaults"
-    /System/bin/wmaker.inst --batch
-    cp /System/etc/WindowMaker/WMRootMenu "$HOME/Library/WindowMaker/Defaults"
+    ${GSLIGHT_SYSDIR}/bin/wmaker.inst --batch
+    cp ${GSLIGHT_SYSDIR}/etc/WindowMaker/WMRootMenu "${HOME_LIBDIR}/WindowMaker/Defaults"
   fi
 
-  if [ ! -f "$HOME/Library/Preferences/NSGlobalDomain.plist" ];then
+  if [ ! -f "${HOME_LIBDIR}/Preferences/NSGlobalDomain.plist" ];then
     echo "init user preferences defaults"
-    mkdir "$HOME/Library/Preferences" 2>/dev/null
-    cp /Library/Preferences/* "$HOME/Library/Preferences/"
+    mkdir "${HOME_LIBDIR}/Preferences" 2>/dev/null
+    cp ${GSLIGHT_LIBDIR}/Preferences/* "${HOME_LIBDIR}/Preferences/"
 
-    mkdir "$HOME/Library/Preferences/.NextSpace" 2>/dev/null
-    cp /Library/Preferences/.NextSpace/* "$HOME/Library/Preferences/.NextSpace"
+    mkdir "${HOME_LIBDIR}/Preferences/.NextSpace" 2>/dev/null
+    cp ${GSLIGHT_LIBDIR}/Preferences/.NextSpace/* "${HOME_LIBDIR}/Preferences/.NextSpace"
   fi
 
   TZ=`defaults read NSGlobalDomain "Local Time Zone" 2>/dev/null`
@@ -133,13 +142,17 @@ function init_config {
     echo "setting session timezone to $TZ"
     export TZ
   else
-    TZ=`cat /etc/timezone`
+    if [ -f /etc/timezone ]; then
+      TZ=`cat /etc/timezone`
+    else
+      TZ=`timedatectl | grep "Time zone" |sed 's#.*:\ \([A-Za-z/]*\).*$#\1#'`
+    fi
     echo "setting default timezone to $TZ"
     defaults write NSGlobalDomain "Local Time Zone" $TZ
   fi
 
   T="/tmp/$UID-gs-desktop.locale"
-  /System/bin/mklocalconfig > "$T"
+  ${GSLIGHT_SYSDIR}/bin/mklocalconfig > "$T"
   source "$T"
   if [ -n "$LANG" ];then
     echo "desktop locale set to $LANG"
@@ -161,9 +174,9 @@ function init_config {
     defaults write GWorkspace WorkspaceName "$HN"
   fi
 
-  /System/bin/mkfontconfig
-  if [ -f "$HOME/Library/etc/fonts.conf" ];then
-    export FONTCONFIG_FILE=$HOME/Library/etc/fonts.conf
+  ${GSLIGHT_SYSDIR}/bin/mkfontconfig
+  if [ -f "${HOME_LIBDIR}/etc/fonts.conf" ];then
+    export FONTCONFIG_FILE=${HOME_LIBDIR}/etc/fonts.conf
   fi
  
   wdwrite WMWindowAttributes 'GSDE-Safe-Mode.XTerm'  '{ DontSaveSession = Yes; NoAppIcon = Yes; StartMiniaturized = Yes; Omnipresent = Yes; }'
@@ -223,7 +236,7 @@ function cleanup {
   echo "cleaning up..."
 
   echo "make sure GWorkspace terminates"
-  /Library/bin/nxworkspace --terminate 2>/dev/null
+  ${GSLIGHT_LIBDIR}/bin/nxworkspace --terminate 2>/dev/null
   sleep 0.5
  
   stop_services
@@ -255,7 +268,7 @@ if ! xset b 0 ;then
     exit 1
   else
     echo "executing startx"
-    exec startx /System/bin/startgsde $*
+    exec startx ${GSLIGHT_SYSDIR}/bin/startgsde $*
   fi
 fi
 
@@ -272,9 +285,9 @@ if [ "$1" == "--safe-mode-continue" ];then
   echo ""
   echo "use use the following commands to start:"
   echo ""
-  echo " /System/bin/startgsde        - start the desktop"
-  echo " /System/bin/startgsde-xnest  - use separate Xserver (Xnest)"
-  echo " /System/bin/startgsde-wmaker - start the wm (very limited!)"
+  echo " ${GSLIGHT_SYSDIR}/bin/startgsde        - start the desktop"
+  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-xnest  - use separate Xserver (Xnest)"
+  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-wmaker - start the wm (very limited!)"
   echo ""
 
   exec $SHELL
@@ -287,12 +300,12 @@ fi
 show_status "the beginning" "black"
 
 ## set system env variables
-export WMAKER_USER_ROOT="$HOME/Library/WindowMaker"
-export PATH="/System/bin:/Library/bin:$HOME/Library/Scripts:/Library/Scripts:$PATH"
-export MANPATH=":/System/share/man:/Library/Documentation/man"
+export WMAKER_USER_ROOT="${HOME_LIBDIR}/WindowMaker"
+export PATH="${GSLIGHT_SYSDIR}/bin:${GSLIGHT_LIBDIR}/bin:${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:$PATH"
+export MANPATH=":${GSLIGHT_SYSDIR}/share/man:${GSLIGHT_LIBDIR}/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"
 export GS_DESKTOP_ID="$$"
-export BROWSER="/Library/bin/nxbrowser"
+export BROWSER="${GSLIGHT_LIBDIR}/bin/nxbrowser"
 export GS_DESKTOP_LOGOUT_CMD="/tmp/$UID-logout.cmd"
 
 ## unset envs in case we are running from a terminal window

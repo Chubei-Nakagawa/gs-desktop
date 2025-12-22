@@ -24,7 +24,7 @@ sub check_lang {
   }
 }
 
-open(IN, "/Library/bin/defaults read NSGlobalDomain NSStringDefaultEncoding |");
+open(IN, "/opt/gs-light/Library/bin/defaults read NSGlobalDomain NSStringDefaultEncoding |");
 while(<IN>) {
   chomp();
   print("GNUSTEP_STRING_ENCODING=NSASCIIStringEncoding\n") if ($_ =~ /ASCII$/);
@@ -57,7 +57,7 @@ while(<IN>) {
 }
 close(IN);
 
-open(IN, "/Library/bin/defaults read NSGlobalDomain NSLanguages |");
+open(IN, "/opt/gs-light/Library/bin/defaults read NSGlobalDomain NSLanguages |");
 while(<IN>) {
   chomp();
   next if ($_ =~ /'\($/);

@@ -18,13 +18,13 @@ case "$T" in
     if [ "$?" -eq 1 ];then
       echo "Terminal runCommand:'$1'" | /Library/bin/stexec -
     else
-      /Library/bin/gopen -a TextEdit "$1"
+      /usr/bin/gopen -a TextEdit "$1"
     fi
  
     exit $?
   ;;
   *ASCII?text*)
-    /Library/bin/gopen -a TextEdit "$1"
+    /usr/bin/gopen -a TextEdit "$1"
     exit $?
   ;;
   *)

@@ -1,8 +1,8 @@
 function notify {
   if [ -n "$1" ];then
-    /Library/bin/nxnotify show-panel --title "$1" --info "$2"
+    /usr/local/bin/nxnotify show-panel --title "$1" --info "$2"
   else
-    /Library/bin/nxnotify hide-panel
+    /usr/local/bin/nxnotify hide-panel
   fi
 }
 
@@ -12,7 +12,7 @@ case "$1" in
 
     T="/tmp/help-man-$$.xlp"
     perl "$PWD/Resources/man2help" "$1" > "$T"
-    /Library/bin/gopen -a HelpViewer "$T"
+    /usr/bin/gopen -a HelpViewer "$T"
 
     notify
     exit
@@ -22,7 +22,7 @@ case "$1" in
 
     T="/tmp/help-info-$$.xlp"
     perl "$PWD/Resources/info2help" "$1" > "$T"
-    /Library/bin/gopen -a HelpViewer "$T"
+    /usr/bin/gopen -a HelpViewer "$T"
 
     notify
     exit
@@ -30,5 +30,5 @@ case "$1" in
 esac
 
 if [ -f "$1" ];then
-  /Library/bin/gopen -a HelpViewer "$1"
+  /usr/bin/gopen -a HelpViewer "$1"
 fi

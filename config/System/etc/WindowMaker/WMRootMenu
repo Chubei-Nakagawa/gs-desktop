@@ -11,21 +11,21 @@
         SHORTCUT,
         XF86AudioRaiseVolume,
         EXEC,
-        "/Library/Scripts/AudioIncreaseVolume"
+        "/opt/gs-light/Library/Scripts/AudioIncreaseVolume"
       ),
       (
         "-",
         SHORTCUT,
         XF86AudioLowerVolume,
         EXEC,
-        "/Library/Scripts/AudioDecreaseVolume"
+        "/opt/gs-light/Library/Scripts/AudioDecreaseVolume"
       ),
       (
         Mute,
         SHORTCUT,
         XF86AudioMute,
         EXEC,
-        "/Library/Scripts/AudioToggleMute"
+        "/opt/gs-light/Library/Scripts/AudioToggleMute"
       )
     ),
     (
@@ -35,14 +35,14 @@
         SHORTCUT,
         XF86MonBrightnessUp,
         EXEC,
-        "/Library/Scripts/DisplayIncreaseBrightness"
+        "/opt/gs-light/Library/Scripts/DisplayIncreaseBrightness"
       ),
       (
         "-",
         SHORTCUT,
         XF86MonBrightnessDown,
         EXEC,
-        "/Library/Scripts/DisplayDecreaseBrightness"
+        "/opt/gs-light/Library/Scripts/DisplayDecreaseBrightness"
       )
     ),
     (
@@ -52,36 +52,36 @@
         SHORTCUT,
         XF86KbdBrightnessUp,
         EXEC,
-        "/Library/Scripts/KeyboardIncreaseBacklight"
+        "/opt/gs-light/Library/Scripts/KeyboardIncreaseBacklight"
       ),
       (
         "Backlight Off",
         SHORTCUT,
         XF86KbdBrightnessDown,
         EXEC,
-        "/Library/Scripts/KeyboardDecreaseBacklight"
+        "/opt/gs-light/Library/Scripts/KeyboardDecreaseBacklight"
       )
     ),
     (
       "Grab ScreenShot",
-      (Selection, EXEC, "/Library/Scripts/ScreenShotSelection"),
-      (Window, EXEC, "/Library/Scripts/ScreenShotWindow"),
-      (Screen, EXEC, "/Library/Scripts/ScreenShotScreen")
+      (Selection, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotSelection"),
+      (Window, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotWindow"),
+      (Screen, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotScreen")
     )
   ),
   (Windows, WINDOWS_MENU),
-  ("Show Workspace", EXEC, "/Library/bin/nxworkspace --fileviewer"),
-  ("System Preferences...", EXEC, "/Library/bin/gopen -a Preferences"),
+  ("Show Workspace", EXEC, "/opt/gs-light/Library/bin/nxworkspace --fileviewer"),
+  ("System Preferences...", EXEC, "/usr/bin/gopen -a Preferences"),
   (
     "Show Launcher",
     SHORTCUT,
     "Control+space",
     EXEC,
-    "/Library/Scripts/ShowLauncher"
+    "/opt/gs-light/Library/Scripts/ShowLauncher"
   ),
   (
     Logout,
-    ("Terminate User Session", EXEC, "/Library/Scripts/WorkspaceLogout"),
-    ("Power Off", EXEC, "/Library/Scripts/WorkspacePoweroff")
+    ("Terminate User Session", EXEC, "/opt/gs-light/Library/Scripts/WorkspaceLogout"),
+    ("Power Off", EXEC, "/opt/gs-light/Library/Scripts/WorkspacePoweroff")
   )
 )

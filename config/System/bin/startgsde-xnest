@@ -35,4 +35,4 @@ echo "ctrl-c will drop you back to the shell"
 
 kill $XPID 2>/dev/null
 echo ""
-echo "use /System/bin/startgsde-xnest to start the desktop again"
+echo "use /opt/gs-light/System/bin/startgsde-xnest to start the desktop again"

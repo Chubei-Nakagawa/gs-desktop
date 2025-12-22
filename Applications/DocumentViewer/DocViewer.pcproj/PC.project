@@ -96,7 +96,7 @@
     "SEARCH_HEADER_DIRS" = (
     );
     "SEARCH_LIB_DIRS" = (
-	"/Library/Frameworks"
+	"/opt/gs-light/Library/Frameworks"
     );
     SUBPROJECTS = (
     );

@@ -4,4 +4,4 @@ export CC=gcc
 export CXX=g++
 export OBJCFLAGS="-g -O0 -Wno-expansion-to-defined"
 export MKARGS="-j`nproc`"
-export PATH="/System/bin:$PATH"
+export PATH="/opt/gs-light/System/bin:$PATH"

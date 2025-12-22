@@ -35,7 +35,7 @@ sub lauchproc {
 
           if ($CMD ne "" && $DONE{$CMD} eq "") {
             print(STDERR " lauch $CMD\n");
-            system("/Library/bin/nxworkspace", "--autolaunch", $CMD);
+            system("/opt/gs-light/Library/bin/nxworkspace", "--autolaunch", $CMD);
             $DONE{$CMD} = $CMD;
             usleep($WAIT);
           }
@@ -51,11 +51,11 @@ sub lauchproc {
 
 ### launch dock items
 print(STDERR "WindowMaker Dock:\n");
-lauchproc ("/System/bin/wdread WMState Dock");
+lauchproc ("/opt/gs-light/System/bin/wdread WMState Dock");
 
 ### launch workspaces items
 print(STDERR "WindowMaker Workspaces:\n");
-lauchproc ("/System/bin/wdread WMState Workspaces");
+lauchproc ("/opt/gs-light/System/bin/wdread WMState Workspaces");
 
 ### Startup folder
 print(STDERR "Startup Scripts:\n");
@@ -76,6 +76,6 @@ print(STDERR "Open Documents:\n");
 foreach (@DOCUMENTS) {
   $FILE = $_;
   print(STDERR " open $FILE\n");
-  system("/Library/bin/nxworkspace", "--open", $FILE);
+  system("/opt/gs-light/Library/bin/nxworkspace", "--open", $FILE);
   usleep($WAIT);
 }

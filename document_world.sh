@@ -1,9 +1,10 @@
 #!/bin/bash
 
 source ./env.sh
-export PATH=/Library/bin:/System/bin:$PATH
+export PATH=${GSLIGHT_LIBRARY}/bin:${GSLIGHT_FOLDER}/System/bin:$PATH
 
-. /Developer/Makefiles/GNUstep.sh
+#. /Developer/Makefiles/GNUstep.sh
+. /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 D=`pwd`
 
@@ -58,7 +59,7 @@ echo "=================="
 cd "$D"
 cd ../libs-steptalk/
 
-T="/Library/Documentation/Developer/StepTalk"
+T="/opt/gs-light/Library/Documentation/Developer/StepTalk"
 mkdir -p "$T" 2>/dev/null
 
 cp -R ./Documentation "$T"
@@ -82,7 +83,7 @@ echo "=================="
 cd "$D"
 cd ../gs-workspace
 
-T="/Library/Documentation/User"
+T="/opt/gs-light/Library/Documentation/User"
 cp ./Documentation/* "$T"
 
 echo ""

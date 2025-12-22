@@ -1,1 +1,1 @@
-/Library/bin/gopen -a ImageViewer "$1"
+/usr/bin/gopen -a ImageViewer "$1"

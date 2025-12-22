@@ -4,7 +4,7 @@ export BROWSER="$0 --browser"
 export TERM="linux"
 
 if [ "$1" == "--browser" ];then
-  exec /Library/bin/gopen "$2"
+  exec /usr/bin/gopen "$2"
 elif [ "$1" == "--services" ];then
   exec /usr/bin/rclone listremotes 
 else

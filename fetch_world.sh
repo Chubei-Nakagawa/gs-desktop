@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-
+. env.sh
 git pull
 
-export PATH=/System/bin:$PATH
+export PATH=${GSLIGHT_FOLDER}/System/bin:$PATH
 
 D=`pwd`
 cd ./build

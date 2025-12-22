@@ -2,22 +2,23 @@
 D=`pwd`
 
 . ../BUILD_SETTINGS.conf
-. /Developer/Makefiles/GNUstep.sh
+#. /Developer/Makefiles/GNUstep.sh
+. /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-cd ../../apps-gorm || exit 1
+#cd ../../apps-gorm || exit 1
+#
+#gmake clean
+#
+#gmake $MKARGS || exit 1
+#gmake install || exit 1
 
-gmake clean
+#cd "$D"
+###cd ../../apps-projectcenter || exit 1
 
-gmake $MKARGS || exit 1
-gmake install || exit 1
+#gmake clean
 
-cd "$D"
-cd ../../apps-projectcenter || exit 1
-
-gmake clean
-
-gmake $MKARGS || exit 1
-gmake install || exit 1
+#gmake $MKARGS || exit 1
+#gmake install || exit 1
 
 cd "$D"
 cd ../../apps-easydiff || exit 1

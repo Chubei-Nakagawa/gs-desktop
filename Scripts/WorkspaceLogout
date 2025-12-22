@@ -9,7 +9,7 @@ sleep 0.5
 
 function status {
   echo "$1"
-   /System/bin/wmshowstatus "$1" "darkgray"
+   /opt/gs-light/System/bin/wmshowstatus "$1" "darkgray"
 }
 
 function logout_process {

@@ -5,13 +5,13 @@
 GNUSTEP_DEFAULT_PREFIX=/usr/lib/x86_64-linux-gnu/GNUstep
 
 # This is where the gnustep-make Makefiles are installed.
-GNUSTEP_MAKEFILES=/opt/gs-light/Developer/Makefiles
+GNUSTEP_MAKEFILES=/usr/share/GNUstep/Makefiles
 
 # This is where the user home directories are.  Only used to provide
 # NSUserDirectory in gnustep-base. Never used anywhere else.
-GNUSTEP_SYSTEM_USERS_DIR=/home
-GNUSTEP_NETWORK_USERS_DIR=/opt/gs-light/Network/Users
-GNUSTEP_LOCAL_USERS_DIR=/home
+GNUSTEP_SYSTEM_USERS_DIR=/var/lib/gs-light/Users
+GNUSTEP_NETWORK_USERS_DIR=/var/lib/gs-light/Network/Users
+GNUSTEP_LOCAL_USERS_DIR=/var/lib/gs-light/Users
 
 # SYSTEM domain
 # This is where all Desktop related file are installed.

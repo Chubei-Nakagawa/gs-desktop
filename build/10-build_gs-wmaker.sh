@@ -28,7 +28,7 @@ else
 fi
 
 ./autogen.sh
-./configure --prefix=/System $DEBUG_ARGS \
+./configure --prefix=/opt/gs-light/System $DEBUG_ARGS \
   LINGUAS="fr de" \
   --disable-randr --enable-dbus || exit 1
 

@@ -139,7 +139,7 @@
   [self findModulesInDirectory: [NSHomeDirectory() stringByAppendingPathComponent: 
 						  @"/GNUstep/Library/InnerSpace"]];
   [self findModulesInDirectory: [NSHomeDirectory() stringByAppendingPathComponent: 
-						  @"/Library/InnerSpace"]];
+						  @"/opt/gs-light/Library/InnerSpace"]];
 }
 
 - (void) awakeFromNib

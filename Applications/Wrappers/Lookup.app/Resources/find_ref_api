@@ -21,5 +21,5 @@ function find_word {
 W="$1"
 L="$W ${W//NSMutable/NS}"
 
-find_word "/Library/Documentation" "$L"
+find_word "/opt/gs-light/Library/Documentation" "$L"
 find_word "$HOME/Library/Documentation" "$L"
