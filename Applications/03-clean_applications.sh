@@ -2,16 +2,7 @@
 D=`pwd`
 
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
-
-cd "$D"
-if cd ../../gs-terminal/Terminal; then
-  echo "=================="
-  echo " clean Terminal App"
-  echo "=================="
-  gmake clean
-fi
 
 cd "$D"
 if cd ../../gs-terminal/Applications/VimGS; then
@@ -69,14 +60,6 @@ echo "=================="
 
 cd "$D"
 cd ../../gs-mail || exit 1
-gmake clean
-
-echo "=================="
-echo " TalkSoap App"
-echo "=================="
-
-cd "$D"
-cd ../../gs-talksoup || exit 1
 gmake clean
 
 echo "=================="

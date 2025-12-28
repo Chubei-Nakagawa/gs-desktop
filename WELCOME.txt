@@ -13,10 +13,10 @@
   - execute 'sudo ./config/install_wdm.sh'
 
  custom setup:
- - add 'exec /opt/gs-light/System/bin/startgsde' to your ~/.xsessionrc
+ - add 'exec /usr/local/bin/startgsde' to your ~/.xsessionrc
 
  anything else:
- - use /opt/gs-light/System/bin/startgsde
+ - use /usr/local/bin/startgsde
 
 ------------------------------------------------------------------------
  WARNING: consider clearing your ~/Library after major release

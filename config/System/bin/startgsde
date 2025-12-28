@@ -2,47 +2,47 @@
 
 GSBASE_DIR="/usr/bin"
 GSDESKTOP_BINDIR="/usr/local/bin"
-GSLIGHT_SYSDIR="/opt/gs-light/System"
-GSLIGHT_LIBDIR="/opt/gs-light/Library"
-HOME_LIBDIR="${HOME}/Library"
+GSLIGHT_SYSDIR="/lib/x86_64-linux-gnu/GNUstep"
+GSLIGHT_LIBDIR="/usr/local/lib/GNUstep"
+HOME_LIBDIR="${HOME}/GNUstep/Library"
 
 function show_status {
   if [ -n "$1" ];then
     echo "status: $1"
-    ${GSLIGHT_SYSDIR}/bin/wmshowstatus "$1" $2 || exit 1
+    ${GSDESKTOP_BINDIR}/wmshowstatus "$1" $2 || exit 1
   else
-    ${GSLIGHT_SYSDIR}/bin/wmshowstatus
+    ${GSDESKTOP_BINDIR}/wmshowstatus
   fi
 }
 
 function start_windowmanager {
-  rm $FONTCONFIG_FILE
-  show_status "starting windowmanager" "gray45"
-  ${GSLIGHT_SYSDIR}/bin/wmaker $WM_ARGS
-  show_status "stopping windowmanager" "gray45"
+#  rm $FONTCONFIG_FILE
+  #show_status "starting windowmanager" "gray45"
+  ${GSBASE_DIR}/wmaker $WM_ARGS
+  #show_status "stopping windowmanager" "gray45"
 }
 
 function continue_in_wm  {
   echo "windowmanager running on $WMAKER_BIN_PID"
   echo "$WMAKER_BIN_PID" > /tmp/$UID-wm.pid
 
-  show_status "about to autostart apps"
+  #show_status "about to autostart apps"
   ${GSLIGHT_LIBDIR}/Scripts/AutoLaunchApps
 
-  show_status "about to start Notification Monitor"
-  #${GSLIGHT_SYSDIR}/Applications/NotMon.app/NotMon -GSSuppressAppIcon YES -autolaunch YES &
-  /usr/local/bin/NotMon -GSSuppressAppIcon YES -autolaunch YES &
+  #show_status "about to start Notification Monitor"
+  #/Applications/NotMon.app/NotMon -GSSuppressAppIcon YES -autolaunch YES &
+  ${GSDESKTOP_BINDIR}/NotMon -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-notmon.pid
 
-  show_status "about to start Gesture Helper"
-  #${GSLIGHT_SYSDIR}/Applications/GestureHelper.app/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
-  /usr/local/bin/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
+  #show_status "about to start Gesture Helper"
+  #/Applications/GestureHelper.app/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
+  ${GSDESKTOP_BINDIR}/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-ghelper.pid
   xrefresh
 }
 
 function start_services {
-  show_status "about to start gdomap" "gray15"
+  #show_status "about to start gdomap" "gray15"
   ${GSBASE_DIR}/defaults write NSGlobalDomain NSPortIsMessagePort NO
   ${GSBASE_DIR}/defaults write NSGlobalDomain NSHostNameIsLocalhost YES
 
@@ -50,12 +50,12 @@ function start_services {
   echo "$!" > /tmp/$UID-gdomap.pid
   sleep 0.5
 
-  show_status "about to start Notification Center" "gray20"
+  #show_status "about to start Notification Center" "gray20"
   ${GSBASE_DIR}/gdnc --daemon &
   echo "$!" > /tmp/$UID-gdnc.pid
   sleep 0.5
 
-  show_status "about to start Pasteboard Service" "gray25"
+  #show_status "about to start Pasteboard Service" "gray25"
   ${GSBASE_DIR}/gpbs --daemon &
   echo "$!" > /tmp/$UID-gpbs.pid
   sleep 0.3
@@ -66,17 +66,17 @@ function start_services {
   # needed to start PA audio sever
   ${GSDESKTOP_BINDIR}/nxaudio --status
 
-  show_status "about to start fswatcher Service" "gray30"
+  #show_status "about to start fswatcher Service" "gray30"
   ${GSDESKTOP_BINDIR}/fswatcher --daemon &
   echo "$!" > /tmp/$UID-fswatcher.pid
   sleep 0.3
 
-  show_status "about to start ddbd Service" "gray35"
+  #show_status "about to start ddbd Service" "gray35"
   ${GSDESKTOP_BINDIR}/ddbd --daemon &
   echo "$!" > /tmp/$UID-ddbd.pid
   sleep 0.3
 
-  show_status "making services" "gray40"
+  #show_status "making services" "gray40"
   ${GSBASE_DIR}/make_services
 }
 
@@ -90,30 +90,30 @@ function _kill_proc {
 }
 
 function stop_services {
-  show_status "about to stop ddbd Service"
+  #show_status "about to stop ddbd Service"
   _kill_proc ddbd
 
-  show_status "about to stop fswatcher Service"
+  #show_status "about to stop fswatcher Service"
   _kill_proc fswatcher
 
-  show_status "about to stop Notification Monitor"
+  #show_status "about to stop Notification Monitor"
   _kill_proc notmon
 
-  show_status "about to stop Gesture Helper"
+  #show_status "about to stop Gesture Helper"
   _kill_proc ghelper
 
-  show_status "about to stop Pasteboard Service"
+  #show_status "about to stop Pasteboard Service"
   _kill_proc gpbs
 
-  show_status "about to stop Notification Center"
+  #show_status "about to stop Notification Center"
   _kill_proc gdnc
 
-  show_status "about to stop gdomap"
+  #show_status "about to stop gdomap"
   _kill_proc gdomap
 }
 
 function init_config {
-  show_status "init config" "gray10"
+  #show_status "init config" "gray10"
 
   if [ ! -f "${HOME_LIBDIR}/etc/GSDE.conf" ];then
     echo "init user defaults"
@@ -121,9 +121,10 @@ function init_config {
     cp -fR /etc/skel/Library/* "${HOME_LIBDIR}"
   fi
  
-  if [ ! -f "${HOME_LIBDIR}/WindowMaker/Defaults/WindowMaker" ];then
+  if [ ! -f "${HOME_LIBDIR}/WindowMaker/Defaults" ];then
     echo "init WindowMaker defaults"
-    ${GSLIGHT_SYSDIR}/bin/wmaker.inst --batch
+    #${GSLIGHT_SYSDIR}/bin/wmaker.inst --batch
+    mkdir -p "${HOME_LIBDIR}/WindowMaker/Defaults"
     cp ${GSLIGHT_SYSDIR}/etc/WindowMaker/WMRootMenu "${HOME_LIBDIR}/WindowMaker/Defaults"
   fi
 
@@ -152,7 +153,7 @@ function init_config {
   fi
 
   T="/tmp/$UID-gs-desktop.locale"
-  ${GSLIGHT_SYSDIR}/bin/mklocalconfig > "$T"
+  ${GSDESKTOP_BINDIR}/mklocalconfig > "$T"
   source "$T"
   if [ -n "$LANG" ];then
     echo "desktop locale set to $LANG"
@@ -174,7 +175,7 @@ function init_config {
     defaults write GWorkspace WorkspaceName "$HN"
   fi
 
-  ${GSLIGHT_SYSDIR}/bin/mkfontconfig
+  ${GSDESKTOP_BINDIR}/mkfontconfig
   if [ -f "${HOME_LIBDIR}/etc/fonts.conf" ];then
     export FONTCONFIG_FILE=${HOME_LIBDIR}/etc/fonts.conf
   fi
@@ -194,7 +195,7 @@ function init_config {
 function start_debug {
   WM_ARGS="--no-autolaunch --static --dont-restore"
 
-  show_status "starting debug session" "black"
+  #show_status "starting debug session" "black"
   init_config
   main_process
   cleanup
@@ -205,14 +206,14 @@ function save_screen {
 }
 
 function restore_screen {
-  show_status "restoring screen"
+  #show_status "restoring screen"
   autorandr -c
 }
 
 function start_normal {
   WM_ARGS="--no-autolaunch --dont-restore"
 
-  show_status "starting normal session" "black"
+  #show_status "starting normal session" "black"
   restore_screen
   init_config
   main_process
@@ -236,12 +237,12 @@ function cleanup {
   echo "cleaning up..."
 
   echo "make sure GWorkspace terminates"
-  ${GSLIGHT_LIBDIR}/bin/nxworkspace --terminate 2>/dev/null
+  ${GSDESKTOP_BINDIR}/nxworkspace --terminate 2>/dev/null
   sleep 0.5
  
   stop_services
 
-  show_status "the end" "black"
+  #show_status "the end" "black"
   echo -e "\e[3;0;0t\ePtmux;\e\e[3;0;0t\e\\"
 
   exec_last_wish
@@ -268,7 +269,7 @@ if ! xset b 0 ;then
     exit 1
   else
     echo "executing startx"
-    exec startx ${GSLIGHT_SYSDIR}/bin/startgsde $*
+    exec startx ${GSDESKTOP_BINDIR}/startgsde $*
   fi
 fi
 
@@ -285,9 +286,9 @@ if [ "$1" == "--safe-mode-continue" ];then
   echo ""
   echo "use use the following commands to start:"
   echo ""
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde        - start the desktop"
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-xnest  - use separate Xserver (Xnest)"
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-wmaker - start the wm (very limited!)"
+  echo " ${GSDESKTOP_BINDIR}/startgsde        - start the desktop"
+  echo " ${GSDESKTOP_BINDIR}/startgsde-xnest  - use separate Xserver (Xnest)"
+  echo " ${GSDESKTOP_BINDIR}/startgsde-wmaker - start the wm (very limited!)"
   echo ""
 
   exec $SHELL
@@ -297,15 +298,15 @@ if [ "$1" == "--safe-mode" ];then
   exec xterm -xrm '*.allowWindowOps:true' -bg black -fg gray -bd green -geometry 160x24+0+0 -name GSDE-Safe-Mode -e "$0" --safe-mode-continue
 fi
 
-show_status "the beginning" "black"
+#show_status "the beginning" "black"
 
 ## set system env variables
 export WMAKER_USER_ROOT="${HOME_LIBDIR}/WindowMaker"
-export PATH="${GSLIGHT_SYSDIR}/bin:${GSLIGHT_LIBDIR}/bin:${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:$PATH"
+export PATH="${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:$PATH"
 export MANPATH=":${GSLIGHT_SYSDIR}/share/man:${GSLIGHT_LIBDIR}/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"
 export GS_DESKTOP_ID="$$"
-export BROWSER="${GSLIGHT_LIBDIR}/bin/nxbrowser"
+export BROWSER="${GSDESKTOP_BINDIR}/nxbrowser"
 export GS_DESKTOP_LOGOUT_CMD="/tmp/$UID-logout.cmd"
 
 ## unset envs in case we are running from a terminal window

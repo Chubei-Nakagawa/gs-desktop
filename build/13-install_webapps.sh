@@ -1,6 +1,5 @@
 #!/bin/bash
+. ../build/gs-light.layout
 
-source ../env.sh
-
-mkdir -p ${GSLIGHT_FOLDER}/Applications/WebApps 2>/dev/null
-cp -Ra ../../gs-webbrowser/Applications/*.app ${GSLIGHT_FOLDER}/Applications/WebApps/
+mkdir -p ${GNUSTEP_LOCAL_WEB_APPS} 2>/dev/null
+cp -Ra ../../gs-webbrowser/Applications/*.app ${GNUSTEP_LOCAL_WEB_APPS}

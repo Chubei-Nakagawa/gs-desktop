@@ -1,5 +1,12 @@
 #!/bin/bash
-source ../env.sh
+. ../build/gs-light.layout
 
-rm -rf ${GSLIGHT_SYSTEM}/Applications
-rm -rf ${GSLIGHT_LIBRARY}/Scripts
+for fname in $(ls ../Helpers|grep .app$); do
+  rm -rf ${GNUSTEP_LOCAL_APPS}/${fname}
+done
+rmdir ${GNUSTEP_LOCAL_APPS}
+
+for fname in $(ls ../Scripts); do
+  rm -f ${GNUSTEP_LOCAL_LIBRARY}/Scripts/${fname}
+done
+rmdir ${GNUSTEP_LOCAL_LIBRARY}/Scripts

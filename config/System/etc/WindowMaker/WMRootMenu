@@ -11,21 +11,21 @@
         SHORTCUT,
         XF86AudioRaiseVolume,
         EXEC,
-        "/opt/gs-light/Library/Scripts/AudioIncreaseVolume"
+        "/usr/local/lib/GNUstep/Scripts/AudioIncreaseVolume"
       ),
       (
         "-",
         SHORTCUT,
         XF86AudioLowerVolume,
         EXEC,
-        "/opt/gs-light/Library/Scripts/AudioDecreaseVolume"
+        "/usr/local/lib/GNUstep/Scripts/AudioDecreaseVolume"
       ),
       (
         Mute,
         SHORTCUT,
         XF86AudioMute,
         EXEC,
-        "/opt/gs-light/Library/Scripts/AudioToggleMute"
+        "/usr/local/lib/GNUstep/Scripts/AudioToggleMute"
       )
     ),
     (
@@ -35,14 +35,14 @@
         SHORTCUT,
         XF86MonBrightnessUp,
         EXEC,
-        "/opt/gs-light/Library/Scripts/DisplayIncreaseBrightness"
+        "/usr/local/lib/GNUstep/Scripts/DisplayIncreaseBrightness"
       ),
       (
         "-",
         SHORTCUT,
         XF86MonBrightnessDown,
         EXEC,
-        "/opt/gs-light/Library/Scripts/DisplayDecreaseBrightness"
+        "/usr/local/lib/GNUstep/Scripts/DisplayDecreaseBrightness"
       )
     ),
     (
@@ -52,36 +52,36 @@
         SHORTCUT,
         XF86KbdBrightnessUp,
         EXEC,
-        "/opt/gs-light/Library/Scripts/KeyboardIncreaseBacklight"
+        "/usr/local/lib/GNUstep/Scripts/KeyboardIncreaseBacklight"
       ),
       (
         "Backlight Off",
         SHORTCUT,
         XF86KbdBrightnessDown,
         EXEC,
-        "/opt/gs-light/Library/Scripts/KeyboardDecreaseBacklight"
+        "/usr/local/lib/GNUstep/Scripts/KeyboardDecreaseBacklight"
       )
     ),
     (
       "Grab ScreenShot",
-      (Selection, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotSelection"),
-      (Window, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotWindow"),
-      (Screen, EXEC, "/opt/gs-light/Library/Scripts/ScreenShotScreen")
+      (Selection, EXEC, "/usr/local/lib/GNUstep/Scripts/ScreenShotSelection"),
+      (Window, EXEC, "/usr/local/lib/GNUstep/Scripts/ScreenShotWindow"),
+      (Screen, EXEC, "/usr/local/lib/GNUstep/Scripts/ScreenShotScreen")
     )
   ),
   (Windows, WINDOWS_MENU),
-  ("Show Workspace", EXEC, "/opt/gs-light/Library/bin/nxworkspace --fileviewer"),
+  ("Show Workspace", EXEC, "/usr/local/bin/nxworkspace --fileviewer"),
   ("System Preferences...", EXEC, "/usr/bin/gopen -a Preferences"),
   (
     "Show Launcher",
     SHORTCUT,
     "Control+space",
     EXEC,
-    "/opt/gs-light/Library/Scripts/ShowLauncher"
+    "/usr/local/lib/GNUstep/Scripts/ShowLauncher"
   ),
   (
     Logout,
-    ("Terminate User Session", EXEC, "/opt/gs-light/Library/Scripts/WorkspaceLogout"),
-    ("Power Off", EXEC, "/opt/gs-light/Library/Scripts/WorkspacePoweroff")
+    ("Terminate User Session", EXEC, "/usr/local/lib/GNUstep/Scripts/WorkspaceLogout"),
+    ("Power Off", EXEC, "/usr/local/lib/GNUstep/Scripts/WorkspacePoweroff")
   )
 )

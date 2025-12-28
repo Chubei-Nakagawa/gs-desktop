@@ -23,13 +23,22 @@ done << EOS
 gnustep-core-doc
 gnustep-gui-doc
 gorm.app-doc
+addressmanager.app
+affiche.app
+batmon.app
+dictionaryreader.app
+edenmath.app
+fontmanager.app
+ftp.app
+gorm.app
+gworkspace.app
+helpviewer.app
+talksoup.app
+terminal.app
+textedit.app
+timemon.app
+volumecontrol.app
 EOS
-
-#affiche.app
-#gorm.app
-#gworkspace.app
-#timemon.app
-#volumecontrol.app
 
 if [[ ${#PACKAGES[@]} -ne 0 ]]; then
   echo "install ${PACKAGES[@]}"

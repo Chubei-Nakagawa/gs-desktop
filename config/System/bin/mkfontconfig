@@ -7,7 +7,7 @@ $USRCFG="$HOME/Library/etc/fonts.conf";
 sub readkey {
   my ($k) = @_;
   my $rv = "";
-  open(IN, "/opt/gs-light/Library/bin/defaults read NSGlobalDomain $k |");
+  open(IN, "/usr/bin/defaults read NSGlobalDomain $k |");
   while(<IN>) {
     chomp();
     @a = split(" ", $_);

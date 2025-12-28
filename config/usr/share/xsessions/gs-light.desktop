@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=GNUstep Desktop
 Comment=This session logs you into GNUstep Desktop
-Exec=/opt/gs-light/System/bin/startgsde
+Exec=/usr/local/bin/startgsde
 # no icon yet, only the top three are currently used
 Icon=
 Keywords=GNUstep Desktop

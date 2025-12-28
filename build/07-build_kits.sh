@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+if [[ -z ${GS_MULTIARCH} ]]; then
+  GS_MULTIARCH=${HOSTTYPE}-${OSTYPE}
+  if [[ -z ${GS_MULTIARCH} ]]; then
+    GS_MULTIARCH=x86_64-linux-gnu
+  fi
+fi
+if [[ -e /etc/GNUstep/GNUstep.conf ]]; then
+  . /etc/GNUstep/GNUstep.conf
+fi
 
 . ../BUILD_SETTINGS.conf
 #. /Developer/Makefiles/GNUstep.sh
@@ -21,7 +30,6 @@ build_kit() {
   gmake $MKARGS || exit 1
 }
 
-build_kit "StepTalk Kit" "../../libs-steptalk"
 build_kit "SimpleWeb Kit" "../../libs-simplewebkit"
 build_kit "PDF Kit" "../Frameworks/PDFKit"
 build_kit "Netclasses" "../Frameworks/netclasses"

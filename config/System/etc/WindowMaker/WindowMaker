@@ -183,14 +183,14 @@
   MenuTextBack = (solid, "#aaaaaa");
   ResizebarBack = (solid, "#aaaaaa");
   WorkspaceBack = (solid, "#4f4f74");
-  IconBack = (tpixmap, "/opt/gs-light/Library/Images/common_Tile.tiff", "#bebebe");
+  IconBack = (tpixmap, "/lib/x86_64-linux-gnu/GNUstep/Images/common_Tile.tiff", "#bebebe");
   IconPath = (
     "~/Library/WindowMaker/Library/Icons",
-    "/System/share/WindowMaker/Pixmaps",
-    "/System/share/WindowMaker/Icons",
+    "/lib/x86_64-linux-gnu/GNUstep/share/WindowMaker/Pixmaps",
+    "/lib/x86_64-linux-gnu/GNUstep/share/WindowMaker/Icons",
     "~/Library/WindowMaker/Library/WindowMaker/CachedPixmaps"
   );
   PixmapPath = (
-    "/System/share/WindowMaker/Pixmaps"
+    "/lib/x86_64-linux-gnu/GNUstep/share/WindowMaker/Pixmaps"
   );
 }

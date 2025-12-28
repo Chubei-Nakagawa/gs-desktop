@@ -6,13 +6,6 @@ D=`pwd`
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 echo "=================="
-echo " Terminal App"
-echo "=================="
-cd "$D"
-cd ../../gs-terminal/Terminal || exit 1
-gmake install || exit 1
-
-echo "=================="
 echo " VimGS App"
 echo "=================="
 cd "$D"
@@ -67,14 +60,6 @@ echo "=================="
 
 cd "$D"
 cd ../../gs-mail || exit 1
-gmake install || exit 1
-
-echo "=================="
-echo " TalkSoap App"
-echo "=================="
-
-cd "$D"
-cd ../../gs-talksoup || exit 1
 gmake install || exit 1
 
 echo "=================="

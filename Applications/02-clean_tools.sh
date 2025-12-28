@@ -1,11 +1,10 @@
 #!/bin/bash
 D=`pwd`
 
-. ../env.sh
 . ../BUILD_SETTINGS.conf
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-install_app() {
+clean_app() {
   cd "$D"
   if cd ./$1; then
     echo "clean:$1"
@@ -15,67 +14,32 @@ install_app() {
   fi
 }
 
-install_app "Tools"
-#install_app "Preferences"
-install_app "Addresses"
-### install_app "Affiche"
-install_app "Calculator"
-install_app "ImageViewer"
-install_app "DocumentViewer"
-install_app "DictionaryReader"
-install_app "FTP"
-install_app "Librarian"
-install_app "Sketch"
-install_app "RemoteView"
-install_app "Player"
+clean_app "Tools"
+clean_app "Addresses"
+#clean_app "Calculator"
+clean_app "ImageViewer"
+clean_app "DocumentViewer"
+#clean_app "DictionaryReader"
+clean_app "Librarian"
+clean_app "Sketch"
+clean_app "RemoteView"
+clean_app "Player"
 
-install_app "WrapperFactory"  'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "DefaultsManager" 'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "HelpViewer"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "FontManager"     'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-### install_app "TimeMon"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "OpenUp"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "ScreenShot"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "InnerSpace"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "ScanImage"       'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "SystemManager"   'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-#install_app "CloudManager"    'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "BatMon"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "VolMon"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "DispMon"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "MountUp"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "NetHood"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-install_app "Network"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "WrapperFactory"
+clean_app "DefaultsManager" 'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "OpenUp"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "ScreenShot"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "InnerSpace"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "ScanImage"       'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "SystemManager"   'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+#clean_app "CloudManager"    'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "VolMon"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "DispMon"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "MountUp"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "NetHood"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+clean_app "Network"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 
-install_app "NotMon"          'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_APPS)'
-install_app "GestureHelper"   'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_APPS)'
-
-###
-cd "$D"
-if cd ../Applications/Addresses/Goodies/VCFViewer; then
-  gmake clean
-fi
-###
-cd "$D"
-if cd ../../libs-steptalk/Examples/Shell; then
-  gmake install
-fi
-###
-. /Library/Preferences/GNUstep.conf
+clean_app "NotMon"          'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_APPS)'
+clean_app "GestureHelper"   'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_APPS)'
 
 
-cd "$D"
-cp -R ./Wrappers/WPrefs.app $GNUSTEP_LOCAL_ADMIN_APPS
-
-cp -R ./Wrappers/Lookup.app $GNUSTEP_LOCAL_ADMIN_APPS
-
-cp -a ./Librarian/Tools/* /opt/gs-light/System/bin
-
-cd "$D"
-if [ -d "/Applications/GSSpeechRecognitionServer.app" ];then
-  mv /Applications/GSSpeechRecognitionServer.app $GNUSTEP_SYSTEM_APPS
-fi
-
-if [ -d "${GNUSTEP_SYSTEM_APPS}/GSSpeechServer.app" ];then
-  rm -rf $GNUSTEP_SYSTEM_APPS/GSSpeechServer.app
-fi

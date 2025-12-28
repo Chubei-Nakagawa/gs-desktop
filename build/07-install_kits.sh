@@ -18,7 +18,6 @@ install_kit() {
   /sbin/ldconfig
 }
 
-install_kit "StepTalk Kit" "../../libs-steptalk"
 install_kit "SimpleWeb Kit" "../../libs-simplewebkit"
 install_kit "PDF Kit" "../Frameworks/PDFKit"
 install_kit "Netclasses" "../Frameworks/netclasses"

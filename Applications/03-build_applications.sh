@@ -2,15 +2,7 @@
 D=`pwd`
 
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
-
-echo "=================="
-echo " Terminal App"
-echo "=================="
-
-cd "$D"
-cd ../../gs-terminal/Terminal || exit 1
 
 gmake clean
 gmake $MKARGS || exit 1
@@ -75,29 +67,11 @@ cd ../../gs-webbrowser || exit 1
 gmake clean
 gmake $MKARGS || exit 1
 
-#echo "=================="
-#echo " TextEdit App"
-#echo "=================="
-##cd "$D"
-#cd ../../gs-textedit || exit 1
-
-#gmake clean
-#gmake $MKARGS || exit 1
-
 echo "=================="
 echo " Mail App"
 echo "=================="
 cd "$D"
 cd ../../gs-mail || exit 1
-
-gmake clean
-gmake $MKARGS || exit 1
-
-echo "=================="
-echo " TalkSoap App"
-echo "=================="
-cd "$D"
-cd ../../gs-talksoup || exit 1
 
 gmake clean
 gmake $MKARGS || exit 1

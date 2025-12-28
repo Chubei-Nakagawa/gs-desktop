@@ -21,7 +21,6 @@ clean_kit() {
   fi
 }
 
-clean_kit "StepTalk Kit" "../../libs-steptalk"
 clean_kit "SimpleWeb Kit" "../../libs-simplewebkit"
 clean_kit "PDF Kit" "../Frameworks/PDFKit"
 clean_kit "Netclasses" "../Frameworks/netclasses"
