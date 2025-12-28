@@ -16,7 +16,9 @@ export PATH=${GSLIGHT_FOLDER}/System/bin:${GSLIGHT_FOLDER}/Library/bin:$PATH
 D=`pwd`
 cd ./build
 ./build_all.sh 2>&1 | tee $D/build_world-system.log
-./install_all.sh 2>&1 | tee $D/install_world-system.log
+exit
+#####
+#./install_all.sh 2>&1 | tee $D/install_world-system.log
 
 cd "$D"
 cd ./Applications

@@ -22,6 +22,3 @@ sh ./configure --disable-global-menu-bundle \
             --disable-notification-bundle || exit 1
 
 gmake $MKARGS || exit 1
-gmake install || exit 1
-
-/sbin/ldconfig

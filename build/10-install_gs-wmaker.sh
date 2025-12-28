@@ -4,7 +4,10 @@
 #. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-if cd ../../gs-workspace; then
-  ./configure || exit 1
-  gmake $MKARGS || exit 1
+unset LD
+unset LDFLAGS
+
+if cd ../../gs-wmaker; then
+  gmake install
 fi
+

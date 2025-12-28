@@ -14,7 +14,6 @@ build_app() {
   gmake clean
 
   gmake $MKARGS || exit 1
-  gmake install $2
 }
 
 build_app "Tools"
@@ -57,33 +56,11 @@ cd "$D"
 cd ../Applications/Addresses/Goodies/VCFViewer || exit 1
 
 gmake $MKARGS || exit 1
-gmake install
 
-ldconfig
+#####ldconfig
 
 ###
 cd "$D"
 cd ../../libs-steptalk/Examples/Shell
 
 gmake $MKARGS || exit 1
-gmake install
-
-###
-. /Library/Preferences/GNUstep.conf
-
-
-cd "$D"
-cp -R ./Wrappers/WPrefs.app $GNUSTEP_LOCAL_ADMIN_APPS
-
-cp -R ./Wrappers/Lookup.app $GNUSTEP_LOCAL_ADMIN_APPS
-
-cp -a ./Librarian/Tools/* /opt/gs-light/System/bin
-
-cd "$D"
-if [ -d "/Applications/GSSpeechRecognitionServer.app" ];then
-  mv /Applications/GSSpeechRecognitionServer.app $GNUSTEP_SYSTEM_APPS
-fi
-
-if [ -d "/Applications/GSSpeechServer.app" ];then
-  mv /Applications/GSSpeechServer.app $GNUSTEP_SYSTEM_APPS
-fi

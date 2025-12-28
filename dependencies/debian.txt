@@ -140,7 +140,4 @@ libgnustep-gui-dev
 libsteptalk-dev
 gnustep-make
 gnustep-core-devel
-gnustep-core-doc
-gnustep-gui-doc
 gorm.app
-gorm.app-doc

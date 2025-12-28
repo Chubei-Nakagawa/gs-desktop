@@ -5,6 +5,5 @@
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 if cd ../../gs-workspace; then
-  ./configure || exit 1
-  gmake $MKARGS || exit 1
+  gmake install 'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_ADMIN_APPS)' || exit 1
 fi

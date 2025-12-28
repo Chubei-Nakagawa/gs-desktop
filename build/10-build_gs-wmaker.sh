@@ -33,4 +33,3 @@ fi
   --disable-randr --enable-dbus || exit 1
 
 gmake $MKARGS || exit 1
-gmake install || exit 1

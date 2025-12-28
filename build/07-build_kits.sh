@@ -14,9 +14,6 @@ build_kit() {
 
   cd "$2" || exit 1
 
-  gmake distclean
-  gmake clean
-
   if [ -x ./configure ];then
     ./configure
   fi
