@@ -4,9 +4,6 @@ D=`pwd`
 . ../BUILD_SETTINGS.conf
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-gmake clean
-gmake $MKARGS || exit 1
-
 echo "=================="
 echo " VimGS App"
 echo "=================="
@@ -14,7 +11,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/VimGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -24,7 +20,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/EmacsGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -34,7 +29,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/GNUPlot || exit 1
 
-gmake clean
 gmake $MKARGSG || exit 1
 
 echo "=================="
@@ -44,7 +38,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/HtopGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -54,7 +47,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/Console || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -64,7 +56,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-webbrowser || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -73,15 +64,5 @@ echo "=================="
 cd "$D"
 cd ../../gs-mail || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
-echo "=================="
-echo " SimpleAgenda App"
-echo "=================="
-cd "$D"
-cd ../../simpleagenda || exit 1
-
-gmake clean
-./configure || exit 1
-gmake $MKARGS || exit 1

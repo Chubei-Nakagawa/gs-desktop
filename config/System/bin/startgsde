@@ -9,9 +9,9 @@ HOME_LIBDIR="${HOME}/GNUstep/Library"
 function show_status {
   if [ -n "$1" ];then
     echo "status: $1"
-    ${GSDESKTOP_BINDIR}/wmshowstatus "$1" $2 || exit 1
-  else
-    ${GSDESKTOP_BINDIR}/wmshowstatus
+    #${GSDESKTOP_BINDIR}/wmshowstatus "$1" $2 || exit 1
+  #else
+    #${GSDESKTOP_BINDIR}/wmshowstatus
   fi
 }
 

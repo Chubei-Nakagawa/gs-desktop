@@ -47,25 +47,10 @@ cd "$D"
 cd ../../gs-webbrowser || exit 1
 gmake clean
 
-#echo "=================="
-#echo " TextEdit App"
-#echo "=================="
-##cd "$D"
-#cd ../../gs-textedit || exit 1
-#gmake clean
-
 echo "=================="
 echo " Mail App"
 echo "=================="
 
 cd "$D"
 cd ../../gs-mail || exit 1
-gmake clean
-
-echo "=================="
-echo " SimpleAgenda App"
-echo "=================="
-
-cd "$D"
-cd ../../simpleagenda || exit 1
 gmake clean

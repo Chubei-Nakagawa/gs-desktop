@@ -1,10 +1,10 @@
 case "$1" in
   *.command)
-    echo "Terminal runCommand:'$1'" | /Library/bin/stexec -
+    echo "Terminal runCommand:'$1'" | /usr/local/bin//stexec -
     exit $?
   ;;
   *.desktop)
-    echo "Terminal runCommand:'$1'" | /Library/bin/stexec -
+    echo "Terminal runCommand:'$1'" | /usr/local/bin//stexec -
     exit $?
   ;;
   *)
@@ -16,7 +16,7 @@ case "$T" in
   *script*ASCII?text?executable)
     /Library/Scripts/NSAlert "Executable Script" "file type $T" "Execute" "Edit"
     if [ "$?" -eq 1 ];then
-      echo "Terminal runCommand:'$1'" | /Library/bin/stexec -
+      echo "Terminal runCommand:'$1'" | /usr/local/bin//stexec -
     else
       /usr/bin/gopen -a TextEdit "$1"
     fi

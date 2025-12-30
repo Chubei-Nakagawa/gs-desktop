@@ -61,11 +61,3 @@ echo "=================="
 cd "$D"
 cd ../../gs-mail || exit 1
 gmake install || exit 1
-
-echo "=================="
-echo " SimpleAgenda App"
-echo "=================="
-
-cd "$D"
-cd ../../simpleagenda || exit 1
-gmake install || exit 1
