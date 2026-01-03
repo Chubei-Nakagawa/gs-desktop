@@ -12,9 +12,11 @@ fi
 PACKAGES=()
 
 while read DD ;do
-  dpkg -l ${DD} 2>/dev/null | grep ^ii >/dev/null 
-  RV="$?"
-  if [ $RV -eq 0 ];then
+  RESULT=$(dpkg -l ${DD} 2>/dev/null)
+  if [[ -z ${RESULT} ]]; then
+    echo "no $DD package" 
+    continue
+  elif [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
     echo "$DD installed" 
   else
     PACKAGES+=( $DD )

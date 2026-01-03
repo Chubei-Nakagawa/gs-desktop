@@ -107,7 +107,7 @@ export PATH="/System/bin:/Library/bin:$HOME/Library/Scripts:/Library/Scripts:$PA
 export MANPATH=":/System/share/man:/Library/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"
 export GS_DESKTOP_ID="$$"
-export BROWSER="/opt/gs-light/Library/bin/nxbrowser"
+export BROWSER="/usr/local/bin/nxbrowser"
 
 ## unset envs in case we are running from a terminal window
 unset XTERM_VERSION

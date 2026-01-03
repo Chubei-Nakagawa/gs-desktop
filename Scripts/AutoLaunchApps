@@ -35,7 +35,7 @@ sub lauchproc {
 
           if ($CMD ne "" && $DONE{$CMD} eq "") {
             print(STDERR " lauch $CMD\n");
-            system("/opt/gs-light/Library/bin/nxworkspace", "--autolaunch", $CMD);
+            system("/usr/local/bin/nxworkspace", "--autolaunch", $CMD);
             $DONE{$CMD} = $CMD;
             usleep($WAIT);
           }
@@ -76,6 +76,6 @@ print(STDERR "Open Documents:\n");
 foreach (@DOCUMENTS) {
   $FILE = $_;
   print(STDERR " open $FILE\n");
-  system("/opt/gs-light/Library/bin/nxworkspace", "--open", $FILE);
+  system("/usr/local/bin/nxworkspace", "--open", $FILE);
   usleep($WAIT);
 }

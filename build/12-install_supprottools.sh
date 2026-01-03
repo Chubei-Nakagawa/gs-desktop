@@ -1,9 +1,9 @@
 #!/bin/bash
 source ../env.sh
 
-mkdir -p ${GSLIGHT_SYSTEM}/Applications 2>/dev/null
-cp -Ra ../Helpers/*.app ${GSLIGHT_SYSTEM}/Applications
+mkdir -p ${GNUSTEP_LOCAL_APPS} 2>/dev/null
+cp -Ra ../Helpers/*.app ${GNUSTEP_LOCAL_APPS}
 
-mkdir -p ${GSLIGHT_LIBRARY}/Scripts 2>/dev/null
-cp -a ../Scripts/* ${GSLIGHT_LIBRARY}/Scripts/
-chmod 0755 ${GSLIGHT_LIBRARY}/Scripts/*
+mkdir -p ${GNUSTEP_LOCAL_LIBRARY}/Scripts 2>/dev/null
+cp -a ../Scripts/* ${GNUSTEP_LOCAL_LIBRARY}/Scripts/
+chmod 0755 ${GNUSTEP_LOCAL_LIBRARY}/Scripts/*

@@ -1,13 +1,8 @@
-#!/bin/sh
-
+#!/bin/bash
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-unset LD
-unset LDFLAGS
-
-if cd ../../gs-wmaker; then
-  gmake install
+if [[ -e ../../gs-wmaker ]]; then
+  (cd ../../gs-wmaker; gmake install)
 fi
 

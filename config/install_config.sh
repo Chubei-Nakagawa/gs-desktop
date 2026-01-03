@@ -30,5 +30,4 @@ ln -s /opt/gs-light/System/bin/startgsde /usr/bin/startgsde
 
 chmod 4755 /opt/gs-light/Library/bin/gdomap
 
-./make_hidden.sh
 echo "done"

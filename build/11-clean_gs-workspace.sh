@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+. ../BUILD_SETTINGS.conf
+. /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-cd ../../gs-workspace || exit 1
-gmake clean
+if [[ -e ../../gs-wmaker ]]; then
+  (cd ../../gs-wmaker; gmake clean)
+fi

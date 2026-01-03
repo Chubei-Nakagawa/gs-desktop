@@ -17,16 +17,16 @@ D=`pwd`
 cd ./build
 ./build_all.sh 2>&1 | tee $D/build_world-system.log
 exit
-#####
-#./install_all.sh 2>&1 | tee $D/install_world-system.log
+sudo ./install_all.sh 2>&1 | tee $D/install_world-system.log
 
 cd "$D"
 cd ./Applications
 ./build_all.sh 2>&1 | tee $D/build_world-apps.log
+sudo ./install_all.sh 2>&1 | tee $D/build_world-apps.log
 
 
 cd "$D"
-./document_world.sh 2>&1 | tee $D/build_world.docs.log
+sudo ./document_world.sh 2>&1 | tee $D/build_world.docs.log
 
 cd "$D"
 cd ./config

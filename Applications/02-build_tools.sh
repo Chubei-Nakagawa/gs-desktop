@@ -1,18 +1,13 @@
 #!/bin/bash
 D=`pwd`
 
-. ../env.sh
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 build_app() {
   cd "$D"
   cd ./$1 || exit 1
   echo "build:$1"
-
-  gmake clean
-
   gmake $MKARGS || exit 1
 }
 

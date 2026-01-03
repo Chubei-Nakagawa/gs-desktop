@@ -70,7 +70,7 @@
     )
   ),
   (Windows, WINDOWS_MENU),
-  ("Show Workspace", EXEC, "/opt/gs-light/Library/bin/nxworkspace --fileviewer"),
+  ("Show Workspace", EXEC, "/usr/local/bin/nxworkspace --fileviewer"),
   ("System Preferences...", EXEC, "/usr/bin/gopen -a Preferences"),
   (
     "Show Launcher",

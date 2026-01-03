@@ -37,7 +37,6 @@ cd "$D"
 cd ./config
 
 ./install_config.sh
-./make_hidden.sh
 
 cd "$D"
 clear
