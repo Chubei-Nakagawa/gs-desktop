@@ -42,7 +42,7 @@ after-install::
 	fi
 
 after-uninstall::
-	rm -r $(DESTDIR)/Library/Fonts
-	rm -r $(DESTDIR)/usr/NextSpace/Images
-	rm -r $(DESTDIR)/usr/NextSpace/Fonts
-	rm -r $(DESTDIR)/usr/NextSpace/Sounds
+	rm -rf $(DESTDIR)/Library/Fonts
+	rm -rf $(DESTDIR)/usr/NextSpace/Images
+	rm -rf $(DESTDIR)/usr/NextSpace/Fonts
+	rm -rf $(DESTDIR)/usr/NextSpace/Sounds

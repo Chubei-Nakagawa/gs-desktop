@@ -58,11 +58,11 @@ cd ../../gs-webbrowser || exit 1
 
 gmake $MKARGS || exit 1
 
-echo "=================="
-echo " Mail App"
-echo "=================="
-cd "$D"
-cd ../../gs-mail || exit 1
+#echo "=================="
+#echo " Mail App"
+#echo "=================="
+#cd "$D"
+#cd ../../gs-mail || exit 1
 
-gmake $MKARGS || exit 1
+#gmake $MKARGS || exit 1
 

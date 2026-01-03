@@ -8,10 +8,10 @@ build_app() {
   cd "$D"
   cd ./$1 || exit 1
   echo "build:$1"
-  gmake $MKARGS || exit 1
+  gmake $MKARGS $2 || exit 1
 }
 
-build_app "Tools"
+build_app "Tools"  'LDFLAGS=-D../../Frameworks/SoundKit/SoundKit.framework/Versions/0.1'
 #build_app "Preferences"
 build_app "Addresses"
 ### build_app "Affiche"
@@ -25,7 +25,7 @@ build_app "Sketch"
 build_app "RemoteView"
 build_app "Player"
 
-build_app "WrapperFactory"  'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+#build_app "WrapperFactory"  'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 build_app "DefaultsManager" 'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 #build_app "HelpViewer"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 #build_app "FontManager"     'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'

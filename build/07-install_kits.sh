@@ -15,7 +15,6 @@ install_kit() {
   cd "$2" || exit 1
 
   gmake install || exit 1
-  /sbin/ldconfig
 }
 
 install_kit "SimpleWeb Kit" "../../libs-simplewebkit"

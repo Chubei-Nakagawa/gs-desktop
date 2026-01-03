@@ -1,5 +1,5 @@
 #!/bin/bash
-for DD in `ls -1 *-clean_*.sh`; do
+for DD in `ls -1 *-makesub_*.sh`; do
   echo "$DD"
-  ./$DD || exit 1
+  ./$DD clean || exit 1
 done

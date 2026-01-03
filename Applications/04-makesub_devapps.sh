@@ -6,8 +6,8 @@ D=`pwd`
 
 cd "$D"
 cd ../../apps-easydiff || exit 1
-gmake clean
+gmake $1 $2
 
 cd "$D"
 cd ../../apps-thematic || exit 1
-gmake clean
+gmake $1 $2

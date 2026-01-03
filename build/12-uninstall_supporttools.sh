@@ -7,6 +7,6 @@ done
 rmdir ${GNUSTEP_LOCAL_APPS}
 
 for fname in $(ls ../Scripts); do
-  rm -f ${GNUSTEP_LOCAL_LIBRARY}/Scripts/${fname}
+  rm -rf ${GNUSTEP_LOCAL_LIBRARY}/Scripts/${fname}
 done
 rmdir ${GNUSTEP_LOCAL_LIBRARY}/Scripts
