@@ -178,7 +178,7 @@
             Position = "5,0";
             Lock = No;
             PasteCommand = "";
-            Command = "/Applications/Utilities/Lookup.app/Lookup";
+            Command = "/usr/local/lib/GNUstep/Applications/Lookup.app/Lookup";
             Omnipresent = No;
           }
         );
