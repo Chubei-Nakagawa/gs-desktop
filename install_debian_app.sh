@@ -12,11 +12,9 @@ fi
 PACKAGES=()
 
 while read DD ;do
-  RESULT=$(dpkg -l ${DD} 2>/dev/null)
-  if [[ -z ${RESULT} ]]; then
-    echo "no $DD package" 
-    continue
-  elif [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
+  dpkg -l ${DD} 2>/dev/null | grep ^ii >/dev/null 
+  RV="$?"
+  if [ $RV -eq 0 ];then
     echo "$DD installed" 
   else
     PACKAGES+=( $DD )
@@ -25,15 +23,20 @@ done << EOS
 gnustep-core-doc
 gnustep-gui-doc
 gorm.app-doc
+systempreferences.app
+curl
+ffmpeg
+imagemagick
+vlc-bin
+vlc-data
+vlc-plugin-video-output
+vlc-plugin-base
+vim-nox
+wget
+xnest
+xterm
 EOS
 
-#affiche.app
-#gorm.app
-#gworkspace.app
-#timemon.app
-#volumecontrol.app
-
-if [[ ${#PACKAGES[@]} -ne 0 ]]; then
-  echo "install ${PACKAGES[@]}"
-  apt-get install "${PACKAGES[@]}"
-fi
+for DD in "${PACKAGES[@]}";do
+  apt-get install -y "${DD}"
+done

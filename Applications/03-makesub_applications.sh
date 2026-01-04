@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 D=`pwd`
 
 . ../BUILD_SETTINGS.conf

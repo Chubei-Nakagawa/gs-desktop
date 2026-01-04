@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "=================="
 echo " system config"
@@ -28,6 +28,9 @@ cp ./System/share/WindowMaker/Icons/* /opt/gs-light/System/share/WindowMaker/Ico
 ln -s /opt/gs-light/System/bin/startgsde-safe /usr/bin/startgsde-safe
 ln -s /opt/gs-light/System/bin/startgsde /usr/bin/startgsde
 
-chmod 4755 /opt/gs-light/Library/bin/gdomap
-
+if [[ $GDOMAP == "" ]]; then
+  chmod 4755 /opt/gs-light/Library/bin/gdomap
+else
+  GDOMAPPATH=$(which gdomap)
+fi
 echo "done"

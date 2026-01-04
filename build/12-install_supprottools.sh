@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../env.sh
+. ../build/gs-light.layout
 
 mkdir -p ${GNUSTEP_LOCAL_APPS} 2>/dev/null
 cp -Ra ../Helpers/*.app ${GNUSTEP_LOCAL_APPS}

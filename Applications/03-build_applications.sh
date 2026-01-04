@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 D=`pwd`
 . ../BUILD_SETTINGS.conf
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
@@ -12,7 +12,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Terminal || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -22,7 +21,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/VimGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -32,7 +30,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/EmacsGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -42,7 +39,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/GNUPlot || exit 1
 
-gmake clean
 gmake $MKARGSG || exit 1
 
 echo "=================="
@@ -52,7 +48,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/HtopGS || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -62,7 +57,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-terminal/Applications/Console || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -72,7 +66,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-webbrowser || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 #echo "=================="
@@ -81,7 +74,6 @@ gmake $MKARGS || exit 1
 ##cd "$D"
 #cd ../../gs-textedit || exit 1
 
-#gmake clean
 #gmake $MKARGS || exit 1
 
 echo "=================="
@@ -90,7 +82,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-mail || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -99,7 +90,6 @@ echo "=================="
 cd "$D"
 cd ../../gs-talksoup || exit 1
 
-gmake clean
 gmake $MKARGS || exit 1
 
 echo "=================="
@@ -108,6 +98,5 @@ echo "=================="
 cd "$D"
 cd ../../simpleagenda || exit 1
 
-gmake clean
 ./configure || exit 1
 gmake $MKARGS || exit 1

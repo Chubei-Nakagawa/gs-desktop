@@ -2,17 +2,17 @@
 
 PACKAGES=()
 for DD in `cat ./debian.txt` ;do
-  RESULT=$(dpkg -l ${DD} 2>/dev/null)
-  if [[ -z ${RESULT} ]]; then
-    echo "no $DD package" 
-    continue
-  elif [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
+  dpkg -l ${DD} 2>/dev/null | grep ^ii >/dev/null 
+  RV="$?"
+  if [ $RV -eq 0 ];then
     echo "$DD installed" 
   else
     PACKAGES+=( $DD )
   fi
 done
-apt-get install "${PACKAGES[@]}"
+for DD in "${PACKAGES[@]}";do
+  apt-get install -y "${DD}"
+done
 
 PACKAGES=()
 while read DD ;do
