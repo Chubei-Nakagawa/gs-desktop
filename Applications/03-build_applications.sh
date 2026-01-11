@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 D=`pwd`
-
 . ../BUILD_SETTINGS.conf
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
+
+./03-makesub_applications.sh 
 
 echo "=================="
 echo " VimGS App"
@@ -57,12 +58,3 @@ cd "$D"
 cd ../../gs-webbrowser || exit 1
 
 gmake $MKARGS || exit 1
-
-#echo "=================="
-#echo " Mail App"
-#echo "=================="
-#cd "$D"
-#cd ../../gs-mail || exit 1
-
-#gmake $MKARGS || exit 1
-

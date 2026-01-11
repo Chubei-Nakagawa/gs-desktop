@@ -13,10 +13,7 @@ PACKAGES=()
 
 while read DD ;do
   RESULT=$(dpkg -l ${DD} 2>/dev/null)
-  if [[ -z ${RESULT} ]]; then
-    echo "no $DD package" 
-    continue
-  elif [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
+  if [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
     echo "$DD installed" 
   else
     echo $RESULT
@@ -36,11 +33,24 @@ ftp.app
 gorm.app
 gworkspace.app
 helpviewer.app
+systempreferences.app
 talksoup.app
 terminal.app
 textedit.app
 timemon.app
 volumecontrol.app
+curl
+ffmpeg
+imagemagick
+vlc-bin
+vlc-data
+vlc-plugin-video-output
+vlc-plugin-base
+vim-nox
+wget
+wmaker
+xnest
+xterm
 EOS
 
 if [[ ${#PACKAGES[@]} -ne 0 ]]; then

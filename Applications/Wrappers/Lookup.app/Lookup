@@ -2,4 +2,4 @@
 F=`realpath "$0"`
 D=`dirname "$F"`
 cd "$D"
-exec /usr/local/bin//GSWrapper_Launcher $@
+exec /usr/local/bin/GSWrapper_Launcher $@

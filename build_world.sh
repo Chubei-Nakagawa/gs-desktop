@@ -19,6 +19,9 @@ cd ./Applications
 ./build_all.sh 2>&1 | tee $D/build_world-apps.log
 sudo ./install_all.sh 2>&1 | tee $D/install_world-apps.log
 
+#cd "$D"
+#sudo ./document_world.sh 2>&1 | tee $D/build_world.docs.log
+
 cd "$D"
 cd ./config
 sudo ./install_config.sh

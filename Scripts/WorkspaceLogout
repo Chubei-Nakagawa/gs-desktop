@@ -14,10 +14,10 @@ function status {
 
 function logout_process {
   status "logging out"
-  /usr/local/bin//nxworkspace --hide
+  /usr/local/bin/nxworkspace --hide
   C=10
   while [ "$C" -ne 0 ];do
-    /usr/local/bin//nxworkspace --ping 
+    /usr/local/bin/nxworkspace --ping 
     RV=$?
     if [ "$RV" -eq 1 ];then 
       break

@@ -14,7 +14,7 @@ esac
 
 case "$T" in
   *script*ASCII?text?executable)
-    /Library/Scripts/NSAlert "Executable Script" "file type $T" "Execute" "Edit"
+    /opt/gs-light/Library/Scripts/NSAlert "Executable Script" "file type $T" "Execute" "Edit"
     if [ "$?" -eq 1 ];then
       echo "Terminal runCommand:'$1'" | /usr/local/bin//stexec -
     else
@@ -28,7 +28,7 @@ case "$T" in
     exit $?
   ;;
   *)
-    /Library/Scripts/NSAlert "Unknown File" "file type $T"
+    /opt/gs-light/Library/Scripts/NSAlert "Unknown File" "file type $T"
     exit $?
   ;;
 esac

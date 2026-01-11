@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 D=`pwd`
 
 . ../BUILD_SETTINGS.conf
@@ -16,6 +16,7 @@ make_app() {
   fi
 }
 
+#make_app $1 "Terminal App" "../../gs-terminal/Terminal"
 make_app $1 "VimGS App" "../../gs-terminal/Applications/VimGS"
 make_app $1 "EmacsGS App" "../../gs-terminal/Applications/EmacsGS"
 make_app $1 "GNUPlot" "../../gs-terminal/Applications/GNUPlot"
@@ -24,3 +25,5 @@ make_app $1 "Console App" "../../gs-terminal/Applications/Console" 'APP_INSTALL_
 make_app $1 "Web Browser" "../../gs-webbrowser"
 #make_app $1 "TextEdit App" "../../gs-textedit"
 #make_app $1 "Mail App" "../../gs-mail"
+#make_app $1 "TalkSoap App" "../../gs-talksoup"
+#make_app $1 "SimpleAgenda App" "../../simpleagenda"
