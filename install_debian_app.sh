@@ -16,7 +16,6 @@ while read DD ;do
   if [[ ${RESULT} =~ ==[^\S]ii[^\S] ]];then
     echo "$DD installed" 
   else
-    echo $RESULT
     PACKAGES+=( $DD )
   fi
 done << EOS
@@ -53,7 +52,7 @@ xnest
 xterm
 EOS
 
-if [[ ${#PACKAGES[@]} -ne 0 ]]; then
-  echo "install ${PACKAGES[@]}"
-  apt-get install "${PACKAGES[@]}"
-fi
+for DD in "${PACKAGES[@]}";do
+  apt-get install -y "${DD}"
+done
+

@@ -14,7 +14,7 @@ cp ./System/bin/* ${GNUSTEP_LOCAL_TOOLS}
 cp -R ./System/etc/* ${GNUSTEP_SYSTEM_LIBRARY}/etc
 cp -R ./etc/skel/* /etc/skel
 
-mkdir -p ${GNUSTEP_LOCAL_LIBRARY}/Preferences/.NextSpace 2>/dev/null
+mkdir -p ${GNUSTEP_LOCAL_LIBRARY}/Preferences/.NextSpace 2>/dev/nullf
 
 cp ./Library/Preferences/* ${GNUSTEP_LOCAL_LIBRARY}/Preferences
 cp ./Library/Preferences/.NextSpace/* ${GNUSTEP_LOCAL_LIBRARY}/Preferences/.NextSpace

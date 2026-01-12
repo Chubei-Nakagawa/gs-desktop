@@ -67,12 +67,12 @@ function start_services {
   ${GSDESKTOP_BINDIR}/nxaudio --status
 
   #show_status "about to start fswatcher Service" "gray30"
-  ${GSDESKTOP_BINDIR}/fswatcher --daemon &
+  ${GSBASE_DIR}/fswatcher --daemon &
   echo "$!" > /tmp/$UID-fswatcher.pid
   sleep 0.3
 
   #show_status "about to start ddbd Service" "gray35"
-  ${GSDESKTOP_BINDIR}/ddbd --daemon &
+  ${GSBASE_DIR}/ddbd --daemon &
   echo "$!" > /tmp/$UID-ddbd.pid
   sleep 0.3
 
