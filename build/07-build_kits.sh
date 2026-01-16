@@ -23,11 +23,13 @@ build_kit() {
 
 build_kit "StepTalk Kit" "../../libs-steptalk"
 build_kit "SimpleWeb Kit" "../../libs-simplewebkit"
+if [[ "${OS_ID}" != "ubuntu" || "${OS_VERSION_ID}" != "22.04" ]]; then
+  build_kit "Pantomine" "../../gs-mail/pantomime"
+  build_kit "Addresses Kit" "../Applications/Addresses/Frameworks"
+fi
 build_kit "PDF Kit" "../Frameworks/PDFKit"
 build_kit "Netclasses" "../Frameworks/netclasses"
-build_kit "Pantomine" "../../gs-mail/pantomime"
 build_kit "Terminal Kit" "../../gs-terminal/TerminalKit"
-build_kit "Addresses Kit" "../Applications/Addresses/Frameworks"
 build_kit "System Kit" "../Frameworks/SystemKit"
 build_kit "Sound Kit" "../Frameworks/SoundKit"
 build_kit "Desktop Kit" "../Frameworks/DesktopKit"

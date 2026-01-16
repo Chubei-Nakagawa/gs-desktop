@@ -4,6 +4,7 @@ gobjc
 gettext
 gnustep-make
 gnustep-common
+gnustep-core-devel
 libgnustep-base-dev
 libgnustep-gui-dev
 systemd-coredump
@@ -30,9 +31,7 @@ util-linux-locales
 locales-all
 picom
 info
-emacs
 fzf
-bc
 gdb
 cmake
 autoconf
@@ -115,7 +114,6 @@ libvncserver-dev
 freerdp2-x11
 recollcmd
 libical-dev
-p7zip
 udisks2
 libpcap-dev
 autorandr
@@ -123,14 +121,12 @@ dict-wn
 dict-jargon
 python3-pyftpdlib
 robin-map-dev
-telnet
-chromium
 libgnustep-base-dev
-libgnustep-corebase-dev
 gnustep-gui-common
 gnustep-gui-runtime
 gnustep-gui-doc
 libgnustep-gui-dev
 libsteptalk-dev
 gnustep-make
-gorm.app
+gnustep-core-devel
+
