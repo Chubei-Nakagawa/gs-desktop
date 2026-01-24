@@ -10,8 +10,8 @@ D=$(pwd)
 if [[ $GSDEPTH > 1 ]]; then
    ###
   cd "$D"
-  cd ../Applications/Addresses/Goodies/VCFViewer || exit 1
-  gmake install
+#  cd ../Applications/Addresses/Goodies/VCFViewer || exit 1
+#  gmake install
 
   ###
   cd "$D"

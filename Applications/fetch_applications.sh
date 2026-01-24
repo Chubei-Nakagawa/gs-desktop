@@ -35,7 +35,7 @@ if [[ $GSDEPTH > 1 ]]; then
     cd ./gs-terminal
     git pull
   else
-    git clone https://github.com/onflapp/gs-terminal.git
+    git clone https://github.com/Chubei-Nakagawa/gs-terminal.git
   fi
 
   cd "$D"

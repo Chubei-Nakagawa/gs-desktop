@@ -12,7 +12,6 @@ unset LDFLAGS
 
 cd ../../gs-wmaker || exit 1
 
-gmake clean
 if [ -n "$RELEASE_BUILD" ];then
   DEBUG_ARGS=""
 else

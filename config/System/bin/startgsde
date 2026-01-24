@@ -278,6 +278,7 @@ fi
 echo "=================================================="
 echo " Starting GNUstep Desktop"
 echo "=================================================="
+PATH=${WMAKER_BINDIR}:${PATH}
 
 if [ "$1" == "--safe-mode-continue" ];then
   export GS_DESKTOP_SAFEMODE="safe"
@@ -303,7 +304,8 @@ fi
 show_status "the beginning" "black"
 
 ## set system env variables
-export WMAKER_USER_ROOT="${HOME_LIBDIR}/WindowMaker"
+#export WMAKER_USER_ROOT="${HOME_LIBDIR}/WindowMaker"
+export WMAKER_USER_ROOT="/opt/WindowMaker/share/WindowMaker"
 export PATH="${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:${WMAKER_BINDIR}:${PATH}"
 export MANPATH=":${GSLIGHT_SYSDIR}/share/man:${GSLIGHT_LIBDIR}/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"

@@ -52,9 +52,12 @@ if [[ $GSDEPTH > 1 ]]; then
   build_app "FontManager"     'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
   build_app "BatMon"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 
+###
+. /etc/GNUstep/GNUstep.conf
+
   cd "$D"
-  cd ../Applications/Addresses/Goodies/VCFViewer || exit 1
-  gmake $MKARGS || exit 1
+#  cd ../Applications/Addresses/Goodies/VCFViewer || exit 1
+#  gmake $MKARGS || exit 1
 
   cd "$D"
   cd ../../libs-steptalk/Examples/Shell
