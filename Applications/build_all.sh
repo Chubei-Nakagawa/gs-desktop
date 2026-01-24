@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 for DD in `ls -1 *-build_*.sh`; do

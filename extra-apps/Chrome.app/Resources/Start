@@ -1,4 +1,5 @@
 PROF="$HOME/Library/Chrome"
+WMAKER_BINDIR="/opt/WindowMaker/bin"
 mkdir -p "$PROF" 2>/dev/null
 
 CHROME=`type -p google-chrome`
@@ -11,7 +12,7 @@ if [ -z "$CHROME" ];then
   exit 10
 fi
 
-#wdwrite WMWindowAttributes 'Firefox-esr' '{ NoAppIcon = Yes; }'
+${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'Firefox-esr' '{ NoAppIcon = Yes; }'
 
 unset FONTCONFIG_FILE
 

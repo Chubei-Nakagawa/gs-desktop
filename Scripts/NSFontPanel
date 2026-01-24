@@ -1,4 +1,4 @@
-#!/Library/bin/stexec
+#!/usr/local/bin/stexec
 
 | rv app |
 

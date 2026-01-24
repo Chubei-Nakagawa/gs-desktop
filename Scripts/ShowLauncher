@@ -15,6 +15,6 @@ function show_selector {
 if [ -n "$1" ];then
   show_selector
 else
-  L="/opt/gs-light/Library/Scripts/ShowLauncher"
+  L="/usr/local/lib/GNUstep/Scripts/ShowLauncher"
   /usr/local/bin/nxnotify show-console --cmd "$L" --arg "apps"
 fi

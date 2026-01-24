@@ -186,11 +186,11 @@
   IconBack = (tpixmap, "/lib/x86_64-linux-gnu/GNUstep/Images/common_Tile.tiff", "#bebebe");
   IconPath = (
     "~/Library/WindowMaker/Library/Icons",
-    "/opt/gs-light/System/share/WindowMaker/Pixmaps",
-    "/opt/gs-light/System/share/WindowMaker/Icons",
+    "/opt/WindowMaker/share/WindowMaker/Pixmaps",
+    "/opt/WindowMaker/share/WindowMaker/Icons",
     "~/Library/WindowMaker/Library/WindowMaker/CachedPixmaps"
   );
   PixmapPath = (
-    "/opt/gs-light/System/share/WindowMaker/Pixmaps"
+    "/opt/WindowMaker/share/WindowMaker/Pixmaps"
   );
 }

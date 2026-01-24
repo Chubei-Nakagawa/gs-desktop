@@ -96,7 +96,7 @@
     "SEARCH_HEADER_DIRS" = (
     );
     "SEARCH_LIB_DIRS" = (
-	"/opt/gs-light/Library/Frameworks"
+	"/lib/x86_64-linux-gnu/GNUstep/Frameworks"
     );
     SUBPROJECTS = (
     );

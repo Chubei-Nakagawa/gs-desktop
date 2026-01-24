@@ -2,23 +2,25 @@
 
 GSBASE_DIR="/usr/bin"
 GSDESKTOP_BINDIR="/usr/local/bin"
-GSLIGHT_SYSDIR="/opt/gs-light/System"
-GSLIGHT_LIBDIR="/opt/gs-light/Library"
-HOME_LIBDIR="${HOME}/Library"
+WMAKER_BINDIR="/opt/WindowMaker/bin"
+GSLIGHT_SYSDIR="/lib/x86_64-linux-gnu/GNUstep"
+GSLIGHT_LIBDIR="/usr/local/lib/GNUstep"
+HOME_LIBDIR="${HOME}/GNUstep/Library"
 
 function show_status {
   if [ -n "$1" ];then
     echo "status: $1"
-    ${GSLIGHT_SYSDIR}/bin/wmshowstatus "$1" $2 || exit 1
+    ${WMAKER_BINDIR}/wmshowstatus "$1" $2 || exit 1
   else
-    ${GSLIGHT_SYSDIR}/bin/wmshowstatus
+    ${WMAKER_BINDIR}/wmshowstatus
   fi
 }
 
 function start_windowmanager {
   rm $FONTCONFIG_FILE
   show_status "starting windowmanager" "gray45"
-  ${GSLIGHT_SYSDIR}/bin/wmaker $WM_ARGS
+  ${WMAKER_BINDIR}/wmaker $WM_ARGS
+  export WMAKER_BIN_PID="$!"
   show_status "stopping windowmanager" "gray45"
 }
 
@@ -31,12 +33,12 @@ function continue_in_wm  {
 
   show_status "about to start Notification Monitor"
   #${GSLIGHT_SYSDIR}/Applications/NotMon.app/NotMon -GSSuppressAppIcon YES -autolaunch YES &
-  /usr/local/bin/NotMon -GSSuppressAppIcon YES -autolaunch YES &
+  ${GSDESKTOP_BINDIR}/NotMon -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-notmon.pid
 
   show_status "about to start Gesture Helper"
   #${GSLIGHT_SYSDIR}/Applications/GestureHelper.app/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
-  /usr/local/bin/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
+  ${GSDESKTOP_BINDIR}/GestureHelper -GSSuppressAppIcon YES -autolaunch YES &
   echo "$!" > /tmp/$UID-ghelper.pid
   xrefresh
 }
@@ -121,9 +123,10 @@ function init_config {
     cp -fR /etc/skel/Library/* "${HOME_LIBDIR}"
   fi
  
-  if [ ! -f "${HOME_LIBDIR}/WindowMaker/Defaults/WindowMaker" ];then
+  if [ ! -f "${HOME_LIBDIR}/WindowMaker/Defaults" ];then
     echo "init WindowMaker defaults"
-    ${GSLIGHT_SYSDIR}/bin/wmaker.inst --batch
+    ${WMAKER_BINDIR}/wmaker.inst --batch
+    mkdir -p "${HOME_LIBDIR}/WindowMaker/Defaults"
     cp ${GSLIGHT_SYSDIR}/etc/WindowMaker/WMRootMenu "${HOME_LIBDIR}/WindowMaker/Defaults"
   fi
 
@@ -152,7 +155,7 @@ function init_config {
   fi
 
   T="/tmp/$UID-gs-desktop.locale"
-  ${GSLIGHT_SYSDIR}/bin/mklocalconfig > "$T"
+  ${GSDESKTOP_BINDIR}/mklocalconfig > "$T"
   source "$T"
   if [ -n "$LANG" ];then
     echo "desktop locale set to $LANG"
@@ -174,16 +177,16 @@ function init_config {
     defaults write GWorkspace WorkspaceName "$HN"
   fi
 
-  ${GSLIGHT_SYSDIR}/bin/mkfontconfig
+  ${GSDESKTOP_BINDIR}/mkfontconfig
   if [ -f "${HOME_LIBDIR}/etc/fonts.conf" ];then
     export FONTCONFIG_FILE=${HOME_LIBDIR}/etc/fonts.conf
   fi
  
-  wdwrite WMWindowAttributes 'GSDE-Safe-Mode.XTerm'  '{ DontSaveSession = Yes; NoAppIcon = Yes; StartMiniaturized = Yes; Omnipresent = Yes; }'
-  wdwrite WMWindowAttributes 'GWorkspace.GNUstep'    '{ DontSaveSession = Yes; NoAppIcon = Yes; }'
-  wdwrite WMWindowAttributes 'GestureHelper.GNUstep' '{ DontSaveSession = Yes; NoAppIcon = Yes; }'
-  wdwrite WMWindowAttributes 'NotMon.GNUstep'        '{ DontSaveSession = Yes; SkipWindowList = Yes; SkipSwitchPanel = Yes; NoAppIcon = Yes; KeepOnTop = Yes; Omnipresent = Yes; }'
-  wdwrite WMWindowAttributes 'NotMon.MessageWindow'  '{ Unfocusable = Yes; }'
+  ${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'GSDE-Safe-Mode.XTerm'  '{ DontSaveSession = Yes; NoAppIcon = Yes; StartMiniaturized = Yes; Omnipresent = Yes; }'
+  ${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'GWorkspace.GNUstep'    '{ DontSaveSession = Yes; NoAppIcon = Yes; }'
+  ${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'GestureHelper.GNUstep' '{ DontSaveSession = Yes; NoAppIcon = Yes; }'
+  ${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'NotMon.GNUstep'        '{ DontSaveSession = Yes; SkipWindowList = Yes; SkipSwitchPanel = Yes; NoAppIcon = Yes; KeepOnTop = Yes; Omnipresent = Yes; }'
+  ${WMAKER_BINDIR}/wdwrite WMWindowAttributes 'NotMon.MessageWindow'  '{ Unfocusable = Yes; }'
  
   if [ -f "$HOME/.gsderc" ];then
     echo "sourcing $HOME/.gsderc"
@@ -236,7 +239,7 @@ function cleanup {
   echo "cleaning up..."
 
   echo "make sure GWorkspace terminates"
-  ${GSLIGHT_LIBDIR}/bin/nxworkspace --terminate 2>/dev/null
+  ${GSDESKTOP_BINDIR}/nxworkspace --terminate 2>/dev/null
   sleep 0.5
  
   stop_services
@@ -268,7 +271,7 @@ if ! xset b 0 ;then
     exit 1
   else
     echo "executing startx"
-    exec startx ${GSLIGHT_SYSDIR}/bin/startgsde $*
+    exec startx ${GSDESKTOP_BINDIR}/startgsde $*
   fi
 fi
 
@@ -285,9 +288,9 @@ if [ "$1" == "--safe-mode-continue" ];then
   echo ""
   echo "use use the following commands to start:"
   echo ""
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde        - start the desktop"
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-xnest  - use separate Xserver (Xnest)"
-  echo " ${GSLIGHT_SYSDIR}/bin/startgsde-wmaker - start the wm (very limited!)"
+  echo " ${GSDESKTOP_BINDIR}/startgsde        - start the desktop"
+  echo " ${GSDESKTOP_BINDIR}/startgsde-xnest  - use separate Xserver (Xnest)"
+  echo " ${GSDESKTOP_BINDIR}/startgsde-wmaker - start the wm (very limited!)"
   echo ""
 
   exec $SHELL
@@ -301,11 +304,11 @@ show_status "the beginning" "black"
 
 ## set system env variables
 export WMAKER_USER_ROOT="${HOME_LIBDIR}/WindowMaker"
-export PATH="${GSLIGHT_SYSDIR}/bin:${GSLIGHT_LIBDIR}/bin:${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:$PATH"
+export PATH="${HOME_LIBDIR}/Scripts:${GSLIGHT_LIBDIR}/Scripts:${WMAKER_BINDIR}:${PATH}"
 export MANPATH=":${GSLIGHT_SYSDIR}/share/man:${GSLIGHT_LIBDIR}/Documentation/man"
 export GS_DESKTOP_LOG="/tmp/$UID-gs-desktop.log"
 export GS_DESKTOP_ID="$$"
-export BROWSER="${GSLIGHT_LIBDIR}/bin/nxbrowser"
+export BROWSER="${GSDESKTOP_BINDIR}/nxbrowser"
 export GS_DESKTOP_LOGOUT_CMD="/tmp/$UID-logout.cmd"
 
 ## unset envs in case we are running from a terminal window

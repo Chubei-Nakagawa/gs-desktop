@@ -11,7 +11,15 @@ make_kit() {
     echo "=================="
     echo " $1 $2"
     echo "=================="
-    gmake $1
+    if gmake $1; then
+      echo $1 $2 completed.
+    else
+      echo "=================="
+      echo " $1 $2 errored!"
+      echo "=================="
+      cd "$D"
+      exit 1
+    fi
   else
     echo "=================="
     echo " $2 : no $3 folder"
@@ -19,6 +27,9 @@ make_kit() {
   fi
 }
 
+if [[ $GSDEPTH > 1 ]]; then
+  make_kit $1 "StepTalk Kit" "../../libs-steptalk"
+fi
 make_kit $1 "SimpleWeb Kit" "../../libs-simplewebkit"
 make_kit $1 "PDF Kit" "../Frameworks/PDFKit"
 make_kit $1 "Netclasses" "../Frameworks/netclasses"

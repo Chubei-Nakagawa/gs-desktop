@@ -51,11 +51,11 @@ sub lauchproc {
 
 ### launch dock items
 print(STDERR "WindowMaker Dock:\n");
-lauchproc ("/opt/gs-light/System/bin/wdread WMState Dock");
+lauchproc ("/opt/WindowMaker/bin/wdread WMState Dock");
 
 ### launch workspaces items
 print(STDERR "WindowMaker Workspaces:\n");
-lauchproc ("/opt/gs-light/System/bin/wdread WMState Workspaces");
+lauchproc ("/opt/WindowMaker/bin/wdread WMState Workspaces");
 
 ### Startup folder
 print(STDERR "Startup Scripts:\n");

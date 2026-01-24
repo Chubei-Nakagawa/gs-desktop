@@ -1,9 +1,5 @@
 #!/bin/bash
 
-source ./env.sh
-export PATH=${GSLIGHT_LIBRARY}/bin:${GSLIGHT_FOLDER}/System/bin:$PATH
-
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 D=`pwd`

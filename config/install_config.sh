@@ -1,36 +1,37 @@
 #!/bin/bash
 
+. ../build/gs-light.layout
+WMAKER_PATH=/opt/WindowMaker
+
 echo "=================="
 echo " system config"
 echo "=================="
 
 mkdir -p /usr/share/xsessions 2>/dev/null
 cp ./usr/share/xsessions/* /usr/share/xsessions
-mkdir -p /opt/gs-light/System/bin 2>/dev/null
-mkdir -p /opt/gs-light/System/etc 2>/dev/null
-cp ./System/bin/* /opt/gs-light/System/bin
-cp -R ./System/etc/* /opt/gs-light/System/etc
+mkdir -p ${GNUSTEP_SYSTEM_LIBRARY}/etc 2>/dev/null
+#cp ./System/bin/* ${GNUSTEP_SYSTEM_TOOLS}
+cp ./System/bin/* ${GNUSTEP_LOCAL_TOOLS}
+cp -R ./System/etc/* ${GNUSTEP_SYSTEM_LIBRARY}/etc
 cp -R ./etc/skel/* /etc/skel
 
-mkdir -p /opt/gs-light/Library/Preferences 2>/dev/null
-cp ./Library/Preferences/* /opt/gs-light/Library/Preferences
+mkdir -p ${GNUSTEP_LOCAL_LIBRARY}/Preferences/.NextSpace 2>/dev/null
 
-mkdir -p /opt/gs-light/Library/Preferences/.NextSpace 2>/dev/null
-cp ./Library/Preferences/.NextSpace/* /opt/gs-light/Library/Preferences/.NextSpace
+cp ./Library/Preferences/* ${GNUSTEP_LOCAL_LIBRARY}/Preferences
+cp ./Library/Preferences/.NextSpace/* ${GNUSTEP_LOCAL_LIBRARY}/Preferences/.NextSpace
 
-mkdir -p /opt/gs-light/Library/Themes 2>/dev/null
-cp -r ./Library/Themes/* /opt/gs-light/Library/Themes
+mkdir -p ${GNUSTEP_LOCAL_LIBRARY}/Themes 2>/dev/null
+cp -r ./Library/Themes/* ${GNUSTEP_LOCAL_LIBRARY}/Themes
 
-cp ./System/share/WindowMaker/*.sh /opt/gs-light/System/share/WindowMaker/
-cp ./System/share/WindowMaker/startws /opt/gs-light/System/share/WindowMaker/
-cp ./System/share/WindowMaker/Icons/* /opt/gs-light/System/share/WindowMaker/Icons/
+mkdir -p ${GNUSTEP_SYSTEM_LIBRARY}/share/WindowMaker/Icons
+cp ./System/share/WindowMaker/*.sh ${GNUSTEP_SYSTEM_LIBRARY}/share/WindowMaker/
+cp ./System/share/WindowMaker/startws ${GNUSTEP_SYSTEM_LIBRARY}/share/WindowMaker/
+cp ./System/share/WindowMaker/Icons/* ${WMAKER_PATH}/share/WindowMaker/Icons/
 
-ln -s /opt/gs-light/System/bin/startgsde-safe /usr/bin/startgsde-safe
-ln -s /opt/gs-light/System/bin/startgsde /usr/bin/startgsde
-
-if [[ $GDOMAP == "" ]]; then
-  chmod 4755 /opt/gs-light/Library/bin/gdomap
-else
-  GDOMAPPATH=$(which gdomap)
+GDOMAP_BIN=$(which gdomap)
+if [[ ! -z ${GDOMAP_BIN} ]]; then
+  chmod 4755 ${GDOMAP_BIN}
 fi
+
+#./make_hidden.sh
 echo "done"

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/System/bin/WPrefs &
+/opt/WindowMaker/bin/WPrefs &

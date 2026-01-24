@@ -1,7 +1,167 @@
 #!/usr/bin/env bash
 
+GSDEPTH=${GSDEPTH:-2}
+
+add_gslib_to_list() {
+  while read DD ;do
+    ALLS+=( $DD )
+  done << EOS
+edenmath.app
+fontmanager.app
+ftp.app
+gnumail.app-common
+gnumail.app
+gworkspace.app
+helpviewer.app
+terminal.app
+helpviewer.app
+wmaker
+EOS
+}
+
+ALLS=()
+while read LINE ;do
+  ALLS+=( ${LINE} )
+done << EOS
+gcc
+gobjc++
+gobjc
+gdb
+cmake
+autoconf
+gettext
+gnustep-make
+gnustep-common
+libgnustep-base-dev
+libgnustep-gui-dev
+systemd-coredump
+libavahi-client-dev
+libavahi-core-dev
+libpocketsphinx3
+libpocketsphinx-dev
+libsphinxbase-dev
+pocketsphinx
+pocketsphinx-en-us
+libicns-dev
+libwebp-dev
+libxinerama-dev
+libaspell-dev
+libinput-dev
+libudev-dev
+libao-dev
+libsndfile1-dev
+libflite1
+flite1-dev
+libcups2-dev
+libgl1-mesa-dev
+util-linux-locales
+locales-all
+picom
+info
+emacs
+fzf
+bc
+libtool
+xinit
+bindfs
+x11-xserver-utils
+xvkbd
+libxtst-dev
+gnuplot-x11
+xdotool
+libffcall-dev
+libxml2-dev
+libxslt-dev
+libpth-dev
+libpthreadpool-dev
+openssl
+libvncserver-dev
+libtiff-dev
+libjpeg-dev
+libpng-dev
+libgif-dev
+aspell
+libfreetype-dev
+libcups2
+libgnutls28-dev
+libxt-dev
+libcairo2-dev
+libaudiofile-dev
+libblocksruntime-dev
+fonts-freefont-ttf
+fontconfig
+libwraster-dev
+libpam0g-dev
+libupower-glib-dev
+libxcursor-dev
+libmagic-dev
+libxrandr-dev
+libbsd-dev
+libudisks2-dev
+libdbus-1-dev
+libdbus-glib-1-dev
+libxkbfile-dev
+libpulse-dev
+libxmu-dev
+libxft-dev
+libxpm-dev
+libssl-dev
+libart-2.0-dev
+network-manager
+texi2html
+texinfo
+texlive
+texlive-latex-extra
+libreadline-dev
+libcairo2-dev
+libglx-dev
+libopengl-dev
+libcups2-dev
+libgif-dev
+libao-dev
+libsndfile1-dev
+libmagickcore-dev
+libcurl4-gnutls-dev
+libicu-dev
+icu-devtools
+sane-utils
+scrot
+slop
+rclone
+htop
+sudo
+dict
+xutils-dev
+libxcb-util0-dev
+libxcb-randr0-dev
+discount
+libsdl2-dev
+libvncserver-dev
+freerdp2-x11
+recollcmd
+libical-dev
+p7zip
+udisks2
+libpcap-dev
+autorandr
+dict-wn
+dict-jargon
+python3-pyftpdlib
+robin-map-dev
+telnet
+chromium
+libgnustep-base-dev
+libgnustep-corebase-dev
+gnustep-gui-common
+gnustep-gui-runtime
+gnustep-gui-doc
+libgnustep-gui-dev
+libsteptalk-dev
+gorm.app
+EOS
+
 PACKAGES=()
-for DD in `cat ./debian.txt` ;do
+for DD in "${ALLS[@]}" ;do
   dpkg -l ${DD} 2>/dev/null | grep ^ii >/dev/null 
   RV="$?"
   if [ $RV -eq 0 ];then
@@ -14,26 +174,11 @@ for DD in "${PACKAGES[@]}";do
   apt-get install -y "${DD}"
 done
 
+
 PACKAGES=()
-while read DD ;do
-  dpkg -l ${DD} 2>/dev/null | grep ^ii >/dev/null 
-  RV="$?"
-  if [ $RV -eq 0 ];then
-    echo "$DD installed" 
-    PACKAGES+=( $DD )
-  fi
-done << EOS
-edenmath.app
-fontmanager.app
-ftp.app
-gnumail.app-common
-gnumail.app
-gworkspace.app
-helpviewer.app
-terminal.app
-helpviewer.app
-wmaker
-EOS
+if [[ $GSDEPTH == 2 ]]; then
+  add_gslib_to_list
+fi
 
 if [[ ${#PACKAGES[@]} -ne 0 ]]; then
   echo "uninstall ${PACKAGES[@]}"

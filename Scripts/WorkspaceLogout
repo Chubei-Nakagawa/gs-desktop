@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
+GSDESKTOP_BINDIR="/usr/local/bin"
+WMAKER_BINDIR="/opt/WindowMaker/bin"
 
 # initate logout
-/usr/local/bin/nxworkspace --logout
+${GSDESKTOP_BINDIR}/nxworkspace --logout
 sleep 0.5
 
 # we should be logging out now
-/usr/local/bin/nxworkspace --ping && exit
+${GSDESKTOP_BINDIR}/nxworkspace --ping && exit
 
 function status {
   echo "$1"
-   /opt/gs-light/System/bin/wmshowstatus "$1" "darkgray"
+   ${WMAKER_BINDIR}/wmshowstatus "$1" "darkgray"
 }
 
 function logout_process {
   status "logging out"
-  /usr/local/bin/nxworkspace --hide
+  ${GSDESKTOP_BINDIR}/nxworkspace --hide
   C=10
   while [ "$C" -ne 0 ];do
-    /usr/local/bin/nxworkspace --ping 
+    ${GSDESKTOP_BINDIR}/nxworkspace --ping 
     RV=$?
     if [ "$RV" -eq 1 ];then 
       break

@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+GSDEPTH=${GSDEPTH:-2}
 
 set -e
+if [[ $GSDEPTH < 2 ]]; then
+  exit
+fi
 
 cd ../../
 if [ -d gs-workspace ];then

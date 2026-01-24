@@ -1,22 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-
 cd ../../
+
+GSDEPTH=${GSDEPTH:-2}
 D=`pwd`
 
-if [ -d libs-steptalk ];then
-  cd ./libs-steptalk
-  git pull
-else
-  git clone https://github.com/onflapp/libs-steptalk.git
-fi
+if [[ $GSDEPTH > 1 ]]; then
+  if [ -d libs-steptalk ];then
+    cd ./libs-steptalk
+    git pull
+  else
+    git clone https://github.com/onflapp/libs-steptalk.git
+  fi
 
-cd "$D"
-if [ -d libs-dbuskit ];then
-  cd ./libs-dbuskit
-  git pull
-else
-  git clone https://github.com/onflapp/libs-dbuskit.git
+  cd "$D"
+  if [ -d libs-dbuskit ];then
+    cd ./libs-dbuskit
+    git pull
+  else
+    git clone https://github.com/onflapp/libs-dbuskit.git
+  fi
 fi
 
 cd "$D"

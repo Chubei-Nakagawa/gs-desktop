@@ -5,58 +5,72 @@
 GNUSTEP_DEFAULT_PREFIX=/usr/lib/x86_64-linux-gnu/GNUstep
 
 # This is where the gnustep-make Makefiles are installed.
+# Traditionally, this is /usr/GNUstep/System/Library/Makefiles
 GNUSTEP_MAKEFILES=/usr/share/GNUstep/Makefiles
 
+
 # This is where the user home directories are.  Only used to provide
-# NSUserDirectory in gnustep-base. Never used anywhere else.
-GNUSTEP_SYSTEM_USERS_DIR=/var/lib/gs-light/Users
-GNUSTEP_NETWORK_USERS_DIR=/var/lib/gs-light/Network/Users
-GNUSTEP_LOCAL_USERS_DIR=/var/lib/gs-light/Users
+# NSUserDirectory in gnustep-base.  Never used anywhere else.
+GNUSTEP_SYSTEM_USERS_DIR=/home
+GNUSTEP_NETWORK_USERS_DIR=/home
+GNUSTEP_LOCAL_USERS_DIR=/home
+
+GNUSTEP_FILESYSTEM_LAYOUT=debian-multiarch
 
 # SYSTEM domain
 # This is where all Desktop related file are installed.
-GNUSTEP_SYSTEM_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/System/Applications
-GNUSTEP_SYSTEM_ADMIN_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/System/Applications
-GNUSTEP_SYSTEM_WEB_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/System/WebApps
-GNUSTEP_SYSTEM_TOOLS=/usr/lib/x86_64-linux-gnu/GNUstep/System/bin
-GNUSTEP_SYSTEM_ADMIN_TOOLS=/usr/lib/x86_64-linux-gnu/GNUstep/System/sbin
-GNUSTEP_SYSTEM_LIBRARY=/usr/lib/x86_64-linux-gnu/GNUstep/System
-GNUSTEP_SYSTEM_HEADERS=/usr/lib/x86_64-linux-gnu/GNUstep/System/include
-GNUSTEP_SYSTEM_LIBRARIES=/usr/lib/x86_64-linux-gnu/GNUstep/System/lib
-GNUSTEP_SYSTEM_DOC=/usr/lib/x86_64-linux-gnu/GNUstep/System/Documentation
-GNUSTEP_SYSTEM_DOC_MAN=/usr/lib/x86_64-linux-gnu/GNUstep/System/share/man
-GNUSTEP_SYSTEM_DOC_INFO=/usr/lib/x86_64-linux-gnu/GNUstep/System/share/info
+GNUSTEP_SYSTEM_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/Applications
+GNUSTEP_SYSTEM_ADMIN_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/Applications
+GNUSTEP_SYSTEM_WEB_APPS=/usr/lib/x86_64-linux-gnu/GNUstep/WebApplications
+GNUSTEP_SYSTEM_TOOLS=/usr/bin
+
+# This is where System Command-Line Tools that only the
+# Administrator can use get installed.  Important: this
+# should not be in the PATH of normal users.
+# Traditionally it is /usr/GNUstep/System/Tools/Admin.
+GNUSTEP_SYSTEM_ADMIN_TOOLS=/usr/sbin
+GNUSTEP_SYSTEM_LIBRARY=/usr/lib/x86_64-linux-gnu/GNUstep
+GNUSTEP_SYSTEM_HEADERS=/usr/lib/x86_64-linux-gnu/GNUstep
+GNUSTEP_SYSTEM_LIBRARIES=/usr/lib/x86_64-linux-gnu
+GNUSTEP_SYSTEM_DOC=/usr/share/GNUstep/Documentation
+
+# This is where System man pages get installed.
+# Traditionally it is /usr/GNUstep/System/Library/Documentation/man.
+GNUSTEP_SYSTEM_DOC_MAN=/usr/share/man
+
+# This is where System info pages get installed.
+# Traditionally it is /usr/GNUstep/System/Library/Documentation/info.
+GNUSTEP_SYSTEM_DOC_INFO=/usr/share/info
 
 # NETWORK domain
 # Until it will be used anywhere we use it as fake DEVELOPER domain.
 # Then we can install developer tools (Gorm, ProjectCenter, etc.) in
 # /Developer/Applications and have assosiated file extensions with tools.
-GNUSTEP_NETWORK_APPS=/opt/gs-light/Developer/Applications
-GNUSTEP_NETWORK_ADMIN_APPS=/opt/gs-light/Developer/Applications
-GNUSTEP_NETWORK_WEB_APPS=/opt/gs-light/Developer/WebApplications
-GNUSTEP_NETWORK_TOOLS=/opt/gs-light/Developer/bin
-GNUSTEP_NETWORK_ADMIN_TOOLS=/opt/gs-light/Developer/sbin
-GNUSTEP_NETWORK_LIBRARY=/opt/gs-light/Developer/Library
-GNUSTEP_NETWORK_HEADERS=/opt/gs-light/Developer/Headers
-GNUSTEP_NETWORK_LIBRARIES=/opt/gs-light/Developer/Libraries
-GNUSTEP_NETWORK_DOC=/opt/gs-light/Developer/Documentation
-GNUSTEP_NETWORK_DOC_MAN=/opt/gs-light/Developer/Documentation/man
-GNUSTEP_NETWORK_DOC_INFO=/opt/gs-light/Developer/Documentation/info
+GNUSTEP_NETWORK_APPS=/usr/local/lib/GNUstep/Applications
+GNUSTEP_NETWORK_ADMIN_APPS=/usr/local/lib/GNUstep/Applications
+GNUSTEP_NETWORK_WEB_APPS=/usr/lib/GNUstep/WebApplications
+GNUSTEP_NETWORK_TOOLS=/usr/local/bin
+GNUSTEP_NETWORK_ADMIN_TOOLS=/usr/local/sbin
+GNUSTEP_NETWORK_LIBRARY=/usr/local/lib/GNUstep
+GNUSTEP_NETWORK_HEADERS=/usr/local/include/GNUstep
+GNUSTEP_NETWORK_LIBRARIES=/usr/local/lib
+GNUSTEP_NETWORK_DOC=/usr/local/share/GNUstep/Documentation
+GNUSTEP_NETWORK_DOC_MAN=/usr/local/share/man
+GNUSTEP_NETWORK_DOC_INFO=/usr/local/share/info
 
 # LOCAL domain
 # This is where GNUstep libraries and resources.
-# User visible NextSpace's applications also installed here.
-GNUSTEP_LOCAL_APPS=/opt/gs-light/Applications
-GNUSTEP_LOCAL_ADMIN_APPS=/opt/gs-light/Applications/Utilities
-GNUSTEP_LOCAL_WEB_APPS=/opt/gs-light/Library/WebApplications
-GNUSTEP_LOCAL_TOOLS=/opt/gs-light/Library/bin
-GNUSTEP_LOCAL_ADMIN_TOOLS=/opt/gs-light/Library/sbin
-GNUSTEP_LOCAL_LIBRARY=/opt/gs-light/Library
-GNUSTEP_LOCAL_HEADERS=/opt/gs-light/Developer/Headers
-GNUSTEP_LOCAL_LIBRARIES=/opt/gs-light/Library/Libraries
-GNUSTEP_LOCAL_DOC=/opt/gs-light/Library/Documentation
-GNUSTEP_LOCAL_DOC_MAN=/opt/gs-light/Library/Documentation/man
-GNUSTEP_LOCAL_DOC_INFO=/opt/gs-light/Library/Documentation/info
+GNUSTEP_LOCAL_APPS=/usr/local/lib/GNUstep/Applications
+GNUSTEP_LOCAL_ADMIN_APPS=/usr/local/lib/GNUstep/Applications
+GNUSTEP_LOCAL_WEB_APPS=/usr/local/lib/GNUstep/WebApplications
+GNUSTEP_LOCAL_TOOLS=/usr/local/bin
+GNUSTEP_LOCAL_ADMIN_TOOLS=/usr/local/sbin
+GNUSTEP_LOCAL_LIBRARY=/usr/local/lib/GNUstep
+GNUSTEP_LOCAL_HEADERS=/usr/local/include/GNUstep
+GNUSTEP_LOCAL_LIBRARIES=/usr/local/lib
+GNUSTEP_LOCAL_DOC=/usr/local/share/GNUstep/Documentation
+GNUSTEP_LOCAL_DOC_MAN=/usr/local/share/man
+GNUSTEP_LOCAL_DOC_INFO=/usr/local/share/info
 
 # USER domain
 # Important: settings in the User should normally be relative paths,
@@ -64,23 +78,23 @@ GNUSTEP_LOCAL_DOC_INFO=/opt/gs-light/Library/Documentation/info
 # allows each user to have their own domain to install things.  You
 # can set them to be absolute, mostly if you want to disable them
 # by setting them equal to the ones in the Network domain.
-GNUSTEP_USER_DIR_APPS=Applications
-GNUSTEP_USER_DIR_ADMIN_APPS=Applications/Utilities
-GNUSTEP_USER_DIR_WEB_APPS=Library/WebApplications
-GNUSTEP_USER_DIR_TOOLS=bin
-GNUSTEP_USER_DIR_ADMIN_TOOLS=sbin
-GNUSTEP_USER_DIR_LIBRARY=Library
-GNUSTEP_USER_DIR_HEADERS=Library/Headers
-GNUSTEP_USER_DIR_LIBRARIES=Library/Libraries
-GNUSTEP_USER_DIR_DOC=Library/Documentation
-GNUSTEP_USER_DIR_DOC_MAN=Library/Documentation/man
-GNUSTEP_USER_DIR_DOC_INFO=Library/Documentation/info
+GNUSTEP_USER_DIR_APPS=GNUstep/Applications
+GNUSTEP_USER_DIR_ADMIN_APPS=GNUstep/Applications/Admin
+GNUSTEP_USER_DIR_WEB_APPS=GNUstep/WebApplications
+GNUSTEP_USER_DIR_TOOLS=GNUstep/Tools
+GNUSTEP_USER_DIR_ADMIN_TOOLS=GNUstep/Tools/Admin
+GNUSTEP_USER_DIR_LIBRARY=GNUstep/Library
+GNUSTEP_USER_DIR_HEADERS=GNUstep/Library/Headers
+GNUSTEP_USER_DIR_LIBRARIES=GNUstep/Library/Libraries
+GNUSTEP_USER_DIR_DOC=GNUstep/Library/Documentation
+GNUSTEP_USER_DIR_DOC_MAN=GNUstep/Library/Documentation/man
+GNUSTEP_USER_DIR_DOC_INFO=GNUstep/Library/Documentation/info
 # The name of the user config file.  This file can override
 # some settings in this file.  Usually used by users that want
 # to install things into their GNUstep user domain and/or have
 # many such domains.
-GNUSTEP_USER_CONFIG_FILE=Library/Preferences/GNUstep.conf
+GNUSTEP_USER_CONFIG_FILE=GNUstep/Library/Preferences/GNUstep.conf
 # The name of the user directory where defaults (eg, preferences) are
 # stored.  If it does not start with a '/', it will be considered
 # relative to the user home directory.
-GNUSTEP_USER_DEFAULTS_DIR=Library/Preferences
+GNUSTEP_USER_DEFAULTS_DIR=GNUstep/Library/Preferences

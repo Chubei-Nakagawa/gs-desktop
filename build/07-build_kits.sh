@@ -1,9 +1,8 @@
-#!/bin/sh
-
+#!/bin/bash
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
+GSDEPTH=${GSDEPTH:-2}
 D=`pwd`
 
 build_kit() {
@@ -11,17 +10,18 @@ build_kit() {
   echo "=================="
   echo " $1"
   echo "=================="
-
-  cd "$2" || exit 1
-
-  if [ -x ./configure ];then
-    ./configure
+  if [[ -e $2 ]]; then
+    cd "$2"
+    if [ -x ./configure ];then
+      ./configure
+    fi
+    gmake $MKARGS || exit 1
   fi
-
-  gmake $MKARGS || exit 1
 }
 
-build_kit "StepTalk Kit" "../../libs-steptalk"
+if [[ $GSDEPTH > 1 ]]; then
+  build_kit "StepTalk Kit" "../../libs-steptalk"
+fi
 build_kit "SimpleWeb Kit" "../../libs-simplewebkit"
 build_kit "PDF Kit" "../Frameworks/PDFKit"
 build_kit "Netclasses" "../Frameworks/netclasses"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 export WMAKER_BIN_PID
-/opt/gs-light/System/bin/startgsde --continue-in-wm
+/usr/local/bin/startgsde --continue-in-wm

@@ -110,7 +110,7 @@
 	". `pkg-config --cflags udisks2` `pkg-config --cflags dbus-1`"
     );
     "SEARCH_LIB_DIRS" = (
-	"/opt/gs-light/Library/Frameworks"
+	"/usr/local/lib/GNUstep/Frameworks"
     );
     SUBPROJECTS = (
     );

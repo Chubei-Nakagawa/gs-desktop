@@ -7,12 +7,9 @@ if [[ $GSDEPTH < 2 ]]; then
   exit
 fi
 
-D=`pwd`
-
-echo "=================="
-echo " DBUS Kit"
-echo "=================="
-
-cd ../../libs-dbuskit
-gmake install || exit 1
-/sbin/ldconfig
+if [[ -e ../../gs-wmaker ]]; then
+  D=$(pwd)
+  cd ../../gs-wmaker
+  gmake ${1} 'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_ADMIN_APPS)'
+  cd ${D}
+fi

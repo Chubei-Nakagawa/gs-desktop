@@ -1,5 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+
+GSDEPTH=${GSDEPTH:-2}
+if [[ $GSDEPTH < 2 ]]; then
+  exit
+fi
 
 cd ../../
 if [ -d gs-wmaker ];then

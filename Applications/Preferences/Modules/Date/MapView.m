@@ -225,7 +225,8 @@ double myrintf(double a)
 
 - (MapZone*) zoneForName:(NSString*) name
 {
-  for (NSInteger z = 0; z < [zones count]; z++) {
+  NSInteger z;
+  for (z = 0; z < [zones count]; z++) {
     MapZone *mz = [zones objectAtIndex:z];
     if ([[mz name] isEqualToString:name]) {
       return mz;

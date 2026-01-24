@@ -1,16 +1,18 @@
-#!/bin/sh
-D=`pwd`
-
+#!/bin/bash
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
-#cd ../../apps-gorm || exit 1
-#gmake install || exit 1
+GSDEPTH=${GSDEPTH:-2}
+D=`pwd`
 
-#cd "$D"
-###cd ../../apps-projectcenter || exit 1
-#gmake install || exit 1
+if [[ $GSDEPTH > 2 ]]; then
+  cd ../../apps-gorm || exit 1
+  gmake install || exit 1
+
+  cd "$D"
+  cd ../../apps-projectcenter || exit 1
+  gmake install || exit 1
+fi
 
 cd "$D"
 cd ../../apps-easydiff || exit 1

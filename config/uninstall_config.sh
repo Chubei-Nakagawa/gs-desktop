@@ -14,8 +14,8 @@ if [[ -z /usr/share/xsessions ]]; then
 fi
 
 for FNAME in $(cd ./System/bin/; ls); do
-  if [[ -e /opt/gs-light/System/bin/${FNAME} ]]; then
-    rm -f /opt/gs-light/System/bin/${FNAME}
+  if [[ -e /usr/local/bin/${FNAME} ]]; then
+    rm -f /usr/local/bin/${FNAME}
   fi
 done
 if [[ -z "$(ls /opt/gs-light/System/bin)" ]]; then

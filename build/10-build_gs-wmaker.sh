@@ -1,8 +1,11 @@
-#!/bin/sh
-
+#!/bin/bash
 . ../BUILD_SETTINGS.conf
-#. /Developer/Makefiles/GNUstep.sh
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
+
+GSDEPTH=${GSDEPTH:-2}
+if [[ $GSDEPTH < 2 ]]; then
+  exit
+fi
 
 unset LD
 unset LDFLAGS
@@ -28,7 +31,7 @@ else
 fi
 
 ./autogen.sh
-./configure --prefix=/opt/gs-light/System $DEBUG_ARGS \
+./configure --prefix=/opt/WindowMaker $DEBUG_ARGS \
   LINGUAS="fr de" \
   --disable-randr --enable-dbus || exit 1
 
