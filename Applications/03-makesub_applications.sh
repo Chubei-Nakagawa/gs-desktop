@@ -11,7 +11,16 @@ make_app() {
     echo "=================="
     echo " $1 $2"
     echo "=================="
-    (cd "$3"; gmake "$1" "$4")
+    cd "$3"
+    if [[ "$1" == "build" ]]; then
+      gmake $MKARGS || exit 1
+    else
+      if [[ -v $4 ]]; then
+        gmake "$1" "$4"
+      else
+        gmake "$1"
+      fi
+    fi
   else
     echo "$1: no $3 folder"
   fi

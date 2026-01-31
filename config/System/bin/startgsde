@@ -119,7 +119,7 @@ function init_config {
 
   if [ ! -f "${HOME_LIBDIR}/etc/GSDE.conf" ];then
     echo "init user defaults"
-    mkdir "${HOME_LIBDIR}" 2>/dev/null
+    mkdir -p "${HOME_LIBDIR}" 2>/dev/null
     cp -fR /etc/skel/Library/* "${HOME_LIBDIR}"
   fi
  
@@ -132,10 +132,10 @@ function init_config {
 
   if [ ! -f "${HOME_LIBDIR}/Preferences/NSGlobalDomain.plist" ];then
     echo "init user preferences defaults"
-    mkdir "${HOME_LIBDIR}/Preferences" 2>/dev/null
+    mkdir -p "${HOME_LIBDIR}/Preferences" 2>/dev/null
     cp ${GSLIGHT_LIBDIR}/Preferences/* "${HOME_LIBDIR}/Preferences/"
 
-    mkdir "${HOME_LIBDIR}/Preferences/.NextSpace" 2>/dev/null
+    mkdir -p "${HOME_LIBDIR}/Preferences/.NextSpace" 2>/dev/null
     cp ${GSLIGHT_LIBDIR}/Preferences/.NextSpace/* "${HOME_LIBDIR}/Preferences/.NextSpace"
   fi
 

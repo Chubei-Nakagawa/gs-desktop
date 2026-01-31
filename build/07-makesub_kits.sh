@@ -1,18 +1,28 @@
 #!/bin/bash
 
+if [[ ! -v OS_ID ]]; then
+  ../env.sh
+fi
 . ../BUILD_SETTINGS.conf
 . /usr/share/GNUstep/Makefiles/GNUstep.sh
 
 D=`pwd`
-
 make_kit() {
   cd "$D"
   if cd "$3"; then
     echo "=================="
     echo " $1 $2"
     echo "=================="
-    if gmake $1; then
-      echo $1 $2 completed.
+    if [[ "$1" == "build" ]]; then
+      if [ -x ./configure ];then
+        ./configure
+      fi
+      gmake $MKARGS
+    else
+      gmake $1
+    fi
+    if [[ $? == 0 ]]; then
+      echo "$1 $2 completed."
     else
       echo "=================="
       echo " $1 $2 errored!"
@@ -30,7 +40,9 @@ make_kit() {
 if [[ $GSDEPTH > 1 ]]; then
   make_kit $1 "StepTalk Kit" "../../libs-steptalk"
 fi
-make_kit $1 "SimpleWeb Kit" "../../libs-simplewebkit"
+if [[ $(echo "${OS_VERSION_ID} > 24.04"|bc) == 1 ]]; then
+  make_kit $1 "SimpleWeb Kit" "../../libs-simplewebkit"
+fi
 make_kit $1 "PDF Kit" "../Frameworks/PDFKit"
 make_kit $1 "Netclasses" "../Frameworks/netclasses"
 make_kit $1 "Pantomine" "../../gs-mail/pantomime"
