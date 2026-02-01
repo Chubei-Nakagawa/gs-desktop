@@ -40,12 +40,14 @@ make_kit() {
 if [[ $GSDEPTH > 1 ]]; then
   make_kit $1 "StepTalk Kit" "../../libs-steptalk"
 fi
-if [[ $(echo "${OS_VERSION_ID} > 24.04"|bc) == 1 ]]; then
+if [[ ${OS_ID} != "ubuntu" || $(echo "${OS_VERSION_ID} > 24.04"|bc) == 1 ]]; then
   make_kit $1 "SimpleWeb Kit" "../../libs-simplewebkit"
 fi
 make_kit $1 "PDF Kit" "../Frameworks/PDFKit"
 make_kit $1 "Netclasses" "../Frameworks/netclasses"
-make_kit $1 "Pantomine" "../../gs-mail/pantomime"
+if [[ ${OS_ID} != "ubuntu" || $(echo "${OS_VERSION_ID} > 22.04"|bc) == 1 ]]; then
+  make_kit $1 "Pantomine" "../../gs-mail/pantomime"
+fi
 make_kit $1 "Terminal Kit" "../../gs-terminal/TerminalKit"
 make_kit $1 "Addresses Kit" "../Applications/Addresses/Frameworks"
 make_kit $1 "System Kit" "../Frameworks/SystemKit"

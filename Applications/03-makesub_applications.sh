@@ -15,10 +15,10 @@ make_app() {
     if [[ "$1" == "build" ]]; then
       gmake $MKARGS || exit 1
     else
-      if [[ -v $4 ]]; then
-        gmake "$1" "$4"
-      else
+      if [[ -z "$4" ]]; then
         gmake "$1"
+      else
+        gmake "$1" "$4"
       fi
     fi
   else
@@ -34,7 +34,9 @@ make_app $1 "Console App" "../../gs-terminal/Applications/Console" 'APP_INSTALL_
 make_app $1 "Web Browser" "../../gs-webbrowser"
 #make_app $1 "TextEdit App" "../../gs-textedit"
 if [[ $GSDEPTH > 1 ]]; then
-  make_app $1 "Terminal App" "../../gs-terminal/Terminal"
+  if [[ "${OS_ID}" == "ubuntu" && $(echo "${OS_VERSION_ID} > 22.04"|bc) == 1 ]]; then
+    make_app $1 "Terminal App" "../../gs-terminal/Terminal"
+  fi
   make_app $1 "Mail App" "../../gs-mail"
   make_app $1 "TalkSoap App" "../../gs-talksoup"
   make_app $1 "SimpleAgenda App" "../../simpleagenda"

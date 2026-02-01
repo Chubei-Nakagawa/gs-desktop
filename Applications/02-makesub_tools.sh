@@ -5,6 +5,11 @@
 GSDEPTH=${GSDEPTH:-2}
 D=$(pwd)
 
+if [[ ! -v OS_ID ]]; then
+  ../env.sh
+  echo "OS_ID is ${OS_ID}"
+fi
+
 make_app() {
   
   cd "$D"
@@ -30,10 +35,14 @@ if [[ $(echo "${OS_VERSION_ID} > 24.04"|bc) == 1 ]]; then
   make_app $1 "Tools" 'LDFLAGS=-D../../Frameworks/SoundKit/SoundKit.framework/Versions/0.1'
   make_app $1 "DocumentViewer"
 fi
-make_app $1 "Preferences"
+if [[ "${OS_ID}" == "ubuntu" && $(echo "${OS_VERSION_ID} > 22.04"|bc) == 1 ]]; then
+  make_app $1 "Preferences"
+  make_app $1 "ImageViewer"
+  make_app $1 "SystemManager"   'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+  make_app $1 "CloudManager"    'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
+fi
 make_app $1 "Addresses"
 make_app $1 "Affiche"
-make_app $1 "ImageViewer"
 make_app $1 "Librarian"
 make_app $1 "Sketch"
 make_app $1 "RemoteView"
@@ -45,8 +54,6 @@ make_app $1 "OpenUp"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "ScreenShot"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "InnerSpace"      'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "ScanImage"       'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-make_app $1 "SystemManager"   'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
-make_app $1 "CloudManager"    'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "VolMon"          'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "DispMon"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
 make_app $1 "MountUp"         'APP_INSTALL_DIR=$(GNUSTEP_LOCAL_ADMIN_APPS)'
