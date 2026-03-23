@@ -9,7 +9,7 @@ fi
 
 if [[ -e ../../gs-wmaker ]]; then
   D=$(pwd)
-  cd ../../gs-wmaker
+  cd ../../gs-workspace
   gmake ${1} 'APP_INSTALL_DIR=$(GNUSTEP_SYSTEM_ADMIN_APPS)'
   cd ${D}
 fi
